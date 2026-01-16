@@ -1,0 +1,71 @@
+/* =========================
+   Create Board Page Styles
+   ========================= */
+
+.board-create-page h2 {
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Form container */
+.board-create-form {
+    max-width: 450px;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+    /* Form groups */
+    .board-create-form .form-group {
+        margin-bottom: 15px;
+    }
+
+    .board-create-form label {
+        font-weight: 500;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    /* Inputs */
+    .board-create-form input,
+    .board-create-form select {
+        width: 100%;
+        padding: 8px 10px;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+    }
+
+        .board-create-form input:focus,
+        .board-create-form select:focus {
+            outline: none;
+            border-color: #0d6efd;
+        }
+
+    /* Buttons */
+    .board-create-form .btn-save {
+        background-color: #0d6efd;
+        color: #ffffff;
+        border: none;
+        padding: 8px 18px;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+        .board-create-form .btn-save:hover {
+            background-color: #0b5ed7;
+        }
+
+    /* Cancel link */
+    .board-create-form .btn-cancel {
+        margin-left: 10px;
+        text-decoration: none;
+        color: #6c757d;
+        font-size: 14px;
+    }
+
+        .board-create-form .btn-cancel:hover {
+            text-decoration: underline;
+        }

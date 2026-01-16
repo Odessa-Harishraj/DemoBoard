@@ -1,0 +1,64 @@
+/* =========================
+   Boards Page Styles
+   ========================= */
+
+.boards-page h2 {
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Create button */
+.boards-page .create-board {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 8px 14px;
+    background-color: #0d6efd;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+    .boards-page .create-board:hover {
+        background-color: #0b5ed7;
+    }
+
+/* Boards table */
+.boards-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    font-size: 14px;
+}
+
+    .boards-table th {
+        background-color: #e9ecef;
+        font-weight: 600;
+        border: 1px solid #ced4da;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .boards-table td {
+        border: 1px solid #dee2e6;
+        padding: 10px;
+    }
+
+    .boards-table tr:nth-child(even) {
+        background-color: #fafafa;
+    }
+
+    .boards-table tr:hover {
+        background-color: #eef5ff;
+    }
+
+    /* Work items link */
+    .boards-table .open-link {
+        color: #0d6efd;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+        .boards-table .open-link:hover {
+            text-decoration: underline;
+        }

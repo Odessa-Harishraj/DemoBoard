@@ -1,0 +1,48 @@
+﻿@model List<JiraClone.Data.StatusConfig>
+@{
+    Layout = "_Layout";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/status-list.css" />
+}
+<div class="status-list-page">
+
+    <h2>Status Config</h2>
+
+    <a asp-action="Create" class="create-status">Create New Status</a>
+
+    <table class="status-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in Model)
+            {
+                <tr>
+                    <td>@s.Name</td>
+                    <td>
+                        <a asp-action="Edit"
+                           asp-route-id="@s.Id"
+                           class="action-link action-link-edit"
+                           title="Edit"
+                           aria-label="Edit">
+                            <img src="~/images/edit.png" alt="Edit" />
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-route-id="@s.Id"
+                           class="action-link action-link-delete"
+                           title="Delete"
+                           aria-label="Delete">
+                            <img src="~/images/delete.png" alt="Delete" />
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

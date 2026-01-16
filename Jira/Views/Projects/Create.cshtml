@@ -1,0 +1,29 @@
+﻿@model JiraClone.Data.Project
+@{
+    Layout = "_Layout";
+}
+
+<div class="project-create-page">
+
+    <h2>Create Project</h2>
+
+    <form asp-action="Create" method="post" class="project-create-form">
+
+        <div class="form-group">
+            <label>Name</label>
+            <input asp-for="Name" />
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <textarea asp-for="Description"></textarea>
+        </div>
+
+        <div>
+            <button type="submit" class="btn-save">Save</button>
+            <a href="/Projects" class="btn-cancel">Cancel</a>
+        </div>
+
+    </form>
+
+</div>

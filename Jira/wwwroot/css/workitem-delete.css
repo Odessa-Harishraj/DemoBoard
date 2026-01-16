@@ -1,0 +1,63 @@
+/* =========================
+   Delete Work Item Page Styles
+   ========================= */
+
+.workitem-delete-page h2 {
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #dc3545;
+}
+
+/* Confirmation box */
+.workitem-delete-box {
+    max-width: 420px;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #f1c0c0;
+}
+
+    /* Warning text */
+    .workitem-delete-box p {
+        margin-bottom: 10px;
+        font-size: 15px;
+    }
+
+    .workitem-delete-box strong {
+        display: block;
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+
+    /* Labels */
+    .workitem-delete-box .label {
+        font-weight: 500;
+        color: #495057;
+    }
+
+    /* Buttons */
+    .workitem-delete-box .btn-delete {
+        background-color: #dc3545;
+        color: #ffffff;
+        border: none;
+        padding: 8px 18px;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+        .workitem-delete-box .btn-delete:hover {
+            background-color: #bb2d3b;
+        }
+
+    /* Cancel link */
+    .workitem-delete-box .btn-cancel {
+        margin-left: 12px;
+        text-decoration: none;
+        color: #6c757d;
+        font-size: 14px;
+    }
+
+        .workitem-delete-box .btn-cancel:hover {
+            text-decoration: underline;
+        }

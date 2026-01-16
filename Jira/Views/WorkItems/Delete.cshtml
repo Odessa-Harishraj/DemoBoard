@@ -1,0 +1,43 @@
+﻿@model JiraClone.Data.WorkItem
+
+@{
+    Layout = "_Layout";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/workitem-delete.css" />
+}
+
+<div class="workitem-delete-page">
+    <h2>Delete Work Item</h2>
+
+    <div class="workitem-delete-box">
+        <p>
+            Are you sure you want to delete the following work item?
+        </p>
+
+        <strong>
+            @Model.Item
+        </strong>
+
+        <p>
+            <span class="label">Project:</span> @Model.Project?.Name<br />
+            <span class="label">Board:</span> @Model.Board?.Name<br />
+            <span class="label">Status:</span> @Model.Status<br />
+            <span class="label">Dev:</span> @Model.Dev<br />
+            <span class="label">BA:</span> @Model.BA
+        </p>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <button type="submit" class="btn-delete">
+                Delete
+            </button>
+
+            <a asp-action="Index" class="btn-cancel">
+                Cancel
+            </a>
+        </form>
+    </div>
+</div>
+

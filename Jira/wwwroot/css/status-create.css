@@ -1,0 +1,139 @@
+/* =========================
+   Create Status Page Styles
+   ========================= */
+
+.status-create-page h2 {
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Form container */
+.status-create-form {
+    max-width: 400px;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+    /* Form groups */
+    .status-create-form .form-group {
+        margin-bottom: 15px;
+    }
+
+    .status-create-form label {
+        font-weight: 500;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    /* Input */
+    .status-create-form input {
+        width: 100%;
+        padding: 8px 10px;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+    }
+
+        .status-create-form input:focus {
+            outline: none;
+            border-color: #0d6efd;
+        }
+
+    /* Buttons */
+    .status-create-form .btn-save {
+        background-color: #0d6efd;
+        color: #ffffff;
+        border: none;
+        padding: 8px 18px;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+        .status-create-form .btn-save:hover {
+            background-color: #0b5ed7;
+        }
+
+    /* Cancel link */
+    .status-create-form .btn-cancel {
+        margin-left: 10px;
+        text-decoration: none;
+        color: #6c757d;
+        font-size: 14px;
+    }
+
+        .status-create-form .btn-cancel:hover {
+            text-decoration: underline;
+        }
+
+/* =========================
+   Edit Status Page Styles
+   ========================= */
+
+.status-edit-page h2 {
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Form container */
+.status-edit-form {
+    max-width: 400px;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+    /* Form groups */
+    .status-edit-form .form-group {
+        margin-bottom: 15px;
+    }
+
+    .status-edit-form label {
+        font-weight: 500;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    /* Input */
+    .status-edit-form input {
+        width: 100%;
+        padding: 8px 10px;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+    }
+
+        .status-edit-form input:focus {
+            outline: none;
+            border-color: #0d6efd;
+        }
+
+    /* Buttons */
+    .status-edit-form .btn-save {
+        background-color: #0d6efd;
+        color: #ffffff;
+        border: none;
+        padding: 8px 18px;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+        .status-edit-form .btn-save:hover {
+            background-color: #0b5ed7;
+        }
+
+    /* Cancel link */
+    .status-edit-form .btn-cancel {
+        margin-left: 10px;
+        text-decoration: none;
+        color: #6c757d;
+        font-size: 14px;
+    }
+
+        .status-edit-form .btn-cancel:hover {
+            text-decoration: underline;
+        }

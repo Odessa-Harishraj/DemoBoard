@@ -1,0 +1,76 @@
+﻿/* =========================
+   Create Project Page Styles
+   ========================= */
+
+.project-create-page h2 {
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Form container */
+.project-create-form {
+    max-width: 500px;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+    /* Form groups */
+    .project-create-form .form-group {
+        margin-bottom: 15px;
+    }
+
+    .project-create-form label {
+        font-weight: 500;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    /* Inputs */
+    .project-create-form input,
+    .project-create-form textarea {
+        width: 100%;
+        padding: 8px 10px;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+    }
+
+    .project-create-form textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+        .project-create-form input:focus,
+        .project-create-form textarea:focus {
+            outline: none;
+            border-color: #0d6efd;
+        }
+
+    /* Buttons */
+    .project-create-form .btn-save {
+        background-color: #0d6efd;
+        color: #ffffff;
+        border: none;
+        padding: 8px 18px;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+        .project-create-form .btn-save:hover {
+            background-color: #0b5ed7;
+        }
+
+    /* Cancel link */
+    .project-create-form .btn-cancel {
+        margin-left: 10px;
+        text-decoration: none;
+        color: #6c757d;
+        font-size: 14px;
+    }
+
+        .project-create-form .btn-cancel:hover {
+            text-decoration: underline;
+        }

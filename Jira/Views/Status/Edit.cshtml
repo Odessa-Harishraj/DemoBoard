@@ -1,0 +1,29 @@
+﻿@model JiraClone.Data.StatusConfig
+@{
+    Layout = "_Layout";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/status-create.css" />
+}
+
+<div class="status-edit-page">
+
+    <h2>Edit Status</h2>
+
+    <form method="post" class="status-edit-form">
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group">
+            <label>Name</label>
+            <input asp-for="Name" />
+        </div>
+
+        <div>
+            <button type="submit" class="btn-save">Save</button>
+            <a asp-action="Index" class="btn-cancel">Cancel</a>
+        </div>
+
+    </form>
+
+</div>

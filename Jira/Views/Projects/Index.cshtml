@@ -1,0 +1,33 @@
+﻿@model List<JiraClone.Data.Project>
+@{
+    Layout = "_Layout";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/projects.css" />
+}
+
+<div class="projects-page">
+
+    <h2>Projects</h2>
+
+    <a href="/Projects/Create" class="create-project">Create New Project</a>
+
+    <table class="projects-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.Name</td>
+                    <td class="description">@p.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

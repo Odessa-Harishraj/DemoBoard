@@ -1,0 +1,662 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\JiraBoard\\Jira\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\wwwroot\\css\\workitems.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:wwwroot\\css\\workitems.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\views\\status\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:views\\status\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\views\\status\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:views\\status\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\views\\projects\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:views\\projects\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\data\\workitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:data\\workitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\views\\boards\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:views\\boards\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\controllers\\workitemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:controllers\\workitemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\wwwroot\\css\\status-list.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:wwwroot\\css\\status-list.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\wwwroot\\css\\status-delete.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:wwwroot\\css\\status-delete.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\wwwroot\\css\\status-create.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:wwwroot\\css\\status-create.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\views\\workitems\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:views\\workitems\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\views\\workitems\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:views\\workitems\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\wwwroot\\css\\workitem-create.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:wwwroot\\css\\workitem-create.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\views\\workitems\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:views\\workitems\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\controllers\\boardscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:controllers\\boardscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\controllers\\projectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:controllers\\projectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\controllers\\statuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:controllers\\statuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\wwwroot\\css\\workitem-delete.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:wwwroot\\css\\workitem-delete.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\views\\boards\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:views\\boards\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\views\\workitems\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:views\\workitems\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\wwwroot\\css\\project-create.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:wwwroot\\css\\project-create.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\wwwroot\\css\\board-create.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:wwwroot\\css\\board-create.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\wwwroot\\css\\boards.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:wwwroot\\css\\boards.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\views\\status\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:views\\status\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\data\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:data\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\data\\board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:data\\board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\migrations\\20260116071316_addprojectboardtoworkitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:migrations\\20260116071316_addprojectboardtoworkitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|d:\\jiraboard\\jira\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{680FD3E2-4CE4-4EB5-842E-7B9CA5C0F570}|Jira.csproj|solutionrelative:views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 36,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Views\\WorkItems\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\WorkItems\\Index.cshtml",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Views\\WorkItems\\Index.cshtml",
+              "RelativeToolTip": "Views\\WorkItems\\Index.cshtml",
+              "ViewState": "AgIAAJkAAAAAAAAAAAAAAK4AAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-12T14:47:32.341Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "workitems.css",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\wwwroot\\css\\workitems.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\workitems.css",
+              "ToolTip": "D:\\JiraBoard\\Jira\\wwwroot\\css\\workitems.css",
+              "RelativeToolTip": "wwwroot\\css\\workitems.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-12T19:56:15.773Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-01-16T13:57:54.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "web.config",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\web.config",
+              "RelativeDocumentMoniker": "web.config",
+              "ToolTip": "D:\\JiraBoard\\Jira\\web.config",
+              "RelativeToolTip": "web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-01-16T13:57:42.639Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{6e6c0f2e-44ca-4628-820d-f3362258d1fd}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{6e6c0f2e-44ca-4628-820d-f3362258d1fd}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "site.css",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\site.css",
+              "ToolTip": "D:\\JiraBoard\\Jira\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "wwwroot\\css\\site.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-16T12:05:07.41Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "project-create.css",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\wwwroot\\css\\project-create.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\project-create.css",
+              "ToolTip": "D:\\JiraBoard\\Jira\\wwwroot\\css\\project-create.css",
+              "RelativeToolTip": "wwwroot\\css\\project-create.css",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAEIAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-16T11:39:50.226Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "status-delete.css",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\wwwroot\\css\\status-delete.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\status-delete.css",
+              "ToolTip": "D:\\JiraBoard\\Jira\\wwwroot\\css\\status-delete.css",
+              "RelativeToolTip": "wwwroot\\css\\status-delete.css",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAowDkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-16T11:29:34.222Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-16T11:12:05.874Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "board-create.css",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\wwwroot\\css\\board-create.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\board-create.css",
+              "ToolTip": "D:\\JiraBoard\\Jira\\wwwroot\\css\\board-create.css",
+              "RelativeToolTip": "wwwroot\\css\\board-create.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-16T10:43:13.106Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "boards.css",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\wwwroot\\css\\boards.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\boards.css",
+              "ToolTip": "D:\\JiraBoard\\Jira\\wwwroot\\css\\boards.css",
+              "RelativeToolTip": "wwwroot\\css\\boards.css",
+              "ViewState": "AgIAABQAAAAAAAAAAAAowEAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-16T10:43:10.308Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "workitem-delete.css",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\wwwroot\\css\\workitem-delete.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\workitem-delete.css",
+              "ToolTip": "D:\\JiraBoard\\Jira\\wwwroot\\css\\workitem-delete.css",
+              "RelativeToolTip": "wwwroot\\css\\workitem-delete.css",
+              "ViewState": "AgIAABMAAAAAAAAAAAAowCMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-16T10:37:01.316Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\AppDbContext.cs",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T09:18:37.094Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Board.cs",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Data\\Board.cs",
+              "RelativeDocumentMoniker": "Data\\Board.cs",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Data\\Board.cs",
+              "RelativeToolTip": "Data\\Board.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T08:55:34.253Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "Project.cs",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Data\\Project.cs",
+              "RelativeDocumentMoniker": "Data\\Project.cs",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Data\\Project.cs",
+              "RelativeToolTip": "Data\\Project.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T08:55:24.437Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Views\\Status\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\Status\\Edit.cshtml",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Views\\Status\\Edit.cshtml",
+              "RelativeToolTip": "Views\\Status\\Edit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-16T08:12:33.939Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "20260116071316_AddProjectBoardToWorkItem.cs",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Migrations\\20260116071316_AddProjectBoardToWorkItem.cs",
+              "RelativeDocumentMoniker": "Migrations\\20260116071316_AddProjectBoardToWorkItem.cs",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Migrations\\20260116071316_AddProjectBoardToWorkItem.cs",
+              "RelativeToolTip": "Migrations\\20260116071316_AddProjectBoardToWorkItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T07:13:37.396Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "Views\\_ViewImports.cshtml",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "Views\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-16T06:59:58.541Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "workitem-create.css",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\wwwroot\\css\\workitem-create.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\workitem-create.css",
+              "ToolTip": "D:\\JiraBoard\\Jira\\wwwroot\\css\\workitem-create.css",
+              "RelativeToolTip": "wwwroot\\css\\workitem-create.css",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAABkAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-16T06:09:15.206Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "WorkItem.cs",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Data\\WorkItem.cs",
+              "RelativeDocumentMoniker": "Data\\WorkItem.cs",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Data\\WorkItem.cs",
+              "RelativeToolTip": "Data\\WorkItem.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAxwBMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T06:01:36.211Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Views\\WorkItems\\Delete.cshtml",
+              "RelativeDocumentMoniker": "Views\\WorkItems\\Delete.cshtml",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Views\\WorkItems\\Delete.cshtml",
+              "RelativeToolTip": "Views\\WorkItems\\Delete.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAwCoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-16T06:00:36.564Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Views\\WorkItems\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\WorkItems\\Edit.cshtml",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Views\\WorkItems\\Edit.cshtml",
+              "RelativeToolTip": "Views\\WorkItems\\Edit.cshtml",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAE4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-16T06:00:22.533Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "StatusController.cs",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Controllers\\StatusController.cs",
+              "RelativeDocumentMoniker": "Controllers\\StatusController.cs",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Controllers\\StatusController.cs",
+              "RelativeToolTip": "Controllers\\StatusController.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAqwFQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T05:45:52.028Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ProjectsController.cs",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Controllers\\ProjectsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProjectsController.cs",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Controllers\\ProjectsController.cs",
+              "RelativeToolTip": "Controllers\\ProjectsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T05:45:03.249Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "BoardsController.cs",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Controllers\\BoardsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BoardsController.cs",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Controllers\\BoardsController.cs",
+              "RelativeToolTip": "Controllers\\BoardsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T05:45:02.031Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "DashboardController.cs",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Controllers\\DashboardController.cs",
+              "RelativeDocumentMoniker": "Controllers\\DashboardController.cs",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Controllers\\DashboardController.cs",
+              "RelativeToolTip": "Controllers\\DashboardController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T05:45:00.789Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "WorkItemsController.cs",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Controllers\\WorkItemsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\WorkItemsController.cs",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Controllers\\WorkItemsController.cs",
+              "RelativeToolTip": "Controllers\\WorkItemsController.cs",
+              "ViewState": "AgIAALMAAAAAAAAAAAAuwMoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T05:43:16.713Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Views\\Projects\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Projects\\Index.cshtml",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Views\\Projects\\Index.cshtml",
+              "RelativeToolTip": "Views\\Projects\\Index.cshtml",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAjwBYAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-16T05:34:10.382Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Views\\Boards\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Boards\\Index.cshtml",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Views\\Boards\\Index.cshtml",
+              "RelativeToolTip": "Views\\Boards\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-16T05:24:23.978Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "site.js",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\site.js",
+              "ToolTip": "D:\\JiraBoard\\Jira\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "wwwroot\\js\\site.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-01-13T07:27:16.161Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAAADIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-13T07:27:05.634Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Views\\Status\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\Status\\Create.cshtml",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Views\\Status\\Create.cshtml",
+              "RelativeToolTip": "Views\\Status\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-13T07:10:14.957Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "status-create.css",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\wwwroot\\css\\status-create.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\status-create.css",
+              "ToolTip": "D:\\JiraBoard\\Jira\\wwwroot\\css\\status-create.css",
+              "RelativeToolTip": "wwwroot\\css\\status-create.css",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAowIsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-13T07:10:01.051Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Views\\Boards\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\Boards\\Create.cshtml",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Views\\Boards\\Create.cshtml",
+              "RelativeToolTip": "Views\\Boards\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-13T07:09:52.962Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Views\\Status\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Status\\Index.cshtml",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Views\\Status\\Index.cshtml",
+              "RelativeToolTip": "Views\\Status\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-13T07:08:59.764Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Views\\WorkItems\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\WorkItems\\Create.cshtml",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Views\\WorkItems\\Create.cshtml",
+              "RelativeToolTip": "Views\\WorkItems\\Create.cshtml",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAAwDQAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-13T07:08:52.342Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\Views\\Dashboard\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Dashboard\\Index.cshtml",
+              "ToolTip": "D:\\JiraBoard\\Jira\\Views\\Dashboard\\Index.cshtml",
+              "RelativeToolTip": "Views\\Dashboard\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-12T20:09:58.285Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "status-list.css",
+              "DocumentMoniker": "D:\\JiraBoard\\Jira\\wwwroot\\css\\status-list.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\status-list.css",
+              "ToolTip": "D:\\JiraBoard\\Jira\\wwwroot\\css\\status-list.css",
+              "RelativeToolTip": "wwwroot\\css\\status-list.css",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAAACQAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-12T19:54:31.761Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{6324226f-61b6-4f28-92ee-18d4b5fe1e48}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

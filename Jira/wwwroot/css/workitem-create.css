@@ -1,0 +1,131 @@
+/* =========================
+   Work Item (Create / Edit)
+   ========================= */
+
+/* Page wrapper */
+.workitem-create-page,
+.workitem-edit-page {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+    /* Page title */
+    .workitem-create-page h2,
+    .workitem-edit-page h2 {
+        margin-bottom: 20px;
+        font-weight: 600;
+        color: #212529;
+    }
+
+/* =========================
+   Form container
+   ========================= */
+
+.workitem-create-form,
+.workitem-edit-form {
+    background-color: #ffffff;
+    padding: 25px 30px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+    /* =========================
+   Form groups
+   ========================= */
+
+    .workitem-create-form .form-group,
+    .workitem-edit-form .form-group {
+        margin-bottom: 16px;
+    }
+
+    .workitem-create-form label,
+    .workitem-edit-form label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 500;
+        color: #212529;
+    }
+
+    /* =========================
+   Inputs / Select / Textarea
+   ========================= */
+
+    .workitem-create-form input,
+    .workitem-create-form select,
+    .workitem-create-form textarea,
+    .workitem-edit-form input,
+    .workitem-edit-form select,
+    .workitem-edit-form textarea {
+        width: 100%;
+        padding: 8px 10px;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+        background-color: #ffffff;
+        color: #212529;
+    }
+
+    /* Textarea */
+    .workitem-create-form textarea,
+    .workitem-edit-form textarea {
+        min-height: 80px;
+        resize: vertical;
+    }
+
+        /* Focus */
+        .workitem-create-form input:focus,
+        .workitem-create-form select:focus,
+        .workitem-create-form textarea:focus,
+        .workitem-edit-form input:focus,
+        .workitem-edit-form select:focus,
+        .workitem-edit-form textarea:focus {
+            outline: none;
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.15);
+        }
+
+    /* =========================
+   Buttons
+   ========================= */
+
+    .workitem-create-form .btn-save,
+    .workitem-edit-form .btn-save {
+        margin-top: 10px;
+        padding: 8px 20px;
+        background-color: #0d6efd;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+        .workitem-create-form .btn-save:hover,
+        .workitem-edit-form .btn-save:hover {
+            background-color: #0b5ed7;
+        }
+
+    /* Cancel link */
+    .workitem-create-form .btn-cancel,
+    .workitem-edit-form .btn-cancel {
+        margin-left: 10px;
+        font-size: 14px;
+        color: #6c757d;
+        text-decoration: none;
+    }
+
+        .workitem-create-form .btn-cancel:hover,
+        .workitem-edit-form .btn-cancel:hover {
+            text-decoration: underline;
+        }
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 768px) {
+    .workitem-create-form,
+    .workitem-edit-form {
+        padding: 20px;
+    }
+}

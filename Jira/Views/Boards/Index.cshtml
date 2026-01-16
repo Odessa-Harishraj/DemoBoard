@@ -1,0 +1,40 @@
+﻿@model List<JiraClone.Data.Board>
+@{
+    Layout = "_Layout";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/boards.css" />
+}
+
+
+<div class="boards-page">
+
+    <h2>Boards</h2>
+
+    <a href="/Boards/Create" class="create-board">Create New Board</a>
+
+    <table class="boards-table">
+        <thead>
+            <tr>
+                <th>Board</th>
+                <th>Project</th>
+                <th>Work Items</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var b in Model)
+            {
+                <tr>
+                    <td>@b.Name</td>
+                    <td>@b.Project?.Name</td>
+                    <td>
+                        <a class="open-link" href="/WorkItems/Index?boardId=@b.Id">
+                            Open
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

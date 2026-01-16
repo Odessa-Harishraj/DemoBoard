@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Odessa Jira</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+        }
+
+        .menu {
+            background: #0052cc;
+            padding: 12px;
+        }
+
+            .menu a {
+                color: white;
+                margin-right: 20px;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+        .container {
+            padding: 20px;
+        }
+    </style>
+
+    @RenderSection("Styles", required: false) <!-- render page-specific styles -->
+</head>
+<body>
+    <div class="menu">
+        <a href="/Dashboard">Dashboard</a>
+        <a href="/Projects">Projects</a>
+        <a href="/Boards">Boards</a>
+        <a href="/WorkItems">Work Items</a>
+        <a href="/Status">Status Config</a>
+    </div>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    @RenderSection("Scripts", required: false) <!-- render page-specific scripts -->
+</body>
+</html>

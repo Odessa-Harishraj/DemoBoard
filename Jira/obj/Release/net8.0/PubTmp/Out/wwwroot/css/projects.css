@@ -1,0 +1,61 @@
+﻿/* =========================
+   Projects Page Styles
+   ========================= */
+
+.projects-page h2 {
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Create button */
+.projects-page .create-project {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 8px 14px;
+    background-color: #0d6efd;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+    .projects-page .create-project:hover {
+        background-color: #0b5ed7;
+    }
+
+/* Projects table */
+.projects-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    font-size: 14px;
+}
+
+    .projects-table th {
+        background-color: #e9ecef;
+        font-weight: 600;
+        border: 1px solid #ced4da;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .projects-table td {
+        border: 1px solid #dee2e6;
+        padding: 10px;
+    }
+
+    .projects-table tr:nth-child(even) {
+        background-color: #fafafa;
+    }
+
+    .projects-table tr:hover {
+        background-color: #eef5ff;
+    }
+
+    /* Description column */
+    .projects-table td.description {
+        max-width: 400px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }

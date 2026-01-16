@@ -1,0 +1,38 @@
+﻿@model JiraClone.Data.Board
+@{
+    Layout = "_Layout";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/board-create.css" />
+}
+
+
+<div class="board-create-page">
+
+    <h2>Create Board</h2>
+
+    <form asp-action="Create" method="post" class="board-create-form">
+
+        <div class="form-group">
+            <label>Board Name</label>
+            <input asp-for="Name" />
+        </div>
+
+        <div class="form-group">
+            <label>Project</label>
+            <select asp-for="ProjectId">
+                @foreach (var p in ViewBag.Projects)
+                {
+                    <option value="@p.Id">@p.Name</option>
+                }
+            </select>
+        </div>
+
+        <div>
+            <button type="submit" class="btn-save">Save</button>
+            <a href="/Boards" class="btn-cancel">Cancel</a>
+        </div>
+
+    </form>
+
+</div>

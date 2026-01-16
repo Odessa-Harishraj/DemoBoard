@@ -1,0 +1,50 @@
+using Microsoft.EntityFrameworkCore;
+using JiraClone.Data;
+
+var builder = WebApplication.CreateBuilder(args);
+
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
+// =========================
+// Register Services
+// =========================
+
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// =========================
+// Build App
+// =========================
+
+var app = builder.Build();
+
+// =========================
+// Configure Middleware
+// =========================
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    // Remove HSTS to allow plain HTTP when hosting behind IIS with IP access
+    // app.UseHsts();
+}
+
+// Remove HTTPS redirection to allow access over HTTP by IP when hosted in IIS
+// app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+// =========================
+// Route Mapping
+// =========================
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Dashboard}/{action=Index}/{id?}");
+
+app.Run();

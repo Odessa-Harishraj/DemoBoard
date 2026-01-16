@@ -1,0 +1,13 @@
+D:\JiraBoard\Jira\obj\Release\net8.0\PubTmp\Out\Jira.exe
+D:\JiraBoard\Jira\obj\Release\net8.0\PubTmp\Out\web.config
+D:\JiraBoard\Jira\obj\Release\net8.0\PubTmp\Out\appsettings.Development.json
+D:\JiraBoard\Jira\obj\Release\net8.0\PubTmp\Out\appsettings.json
+D:\JiraBoard\Jira\obj\Release\net8.0\PubTmp\Out\Jira.dll
+D:\JiraBoard\Jira\obj\Release\net8.0\PubTmp\Out\Jira.runtimeconfig.json
+D:\JiraBoard\Jira\obj\Release\net8.0\PubTmp\Out\Jira.pdb
+D:\JiraBoard\Jira\obj\Release\net8.0\PubTmp\Out\Microsoft.EntityFrameworkCore.dll
+D:\JiraBoard\Jira\obj\Release\net8.0\PubTmp\Out\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\JiraBoard\Jira\obj\Release\net8.0\PubTmp\Out\Microsoft.EntityFrameworkCore.Relational.dll
+D:\JiraBoard\Jira\obj\Release\net8.0\PubTmp\Out\Npgsql.dll
+D:\JiraBoard\Jira\obj\Release\net8.0\PubTmp\Out\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\JiraBoard\Jira\obj\Release\net8.0\PubTmp\Out\Jira.deps.json
