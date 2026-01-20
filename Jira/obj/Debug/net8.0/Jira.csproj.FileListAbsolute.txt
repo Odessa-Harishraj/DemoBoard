@@ -241,4 +241,12 @@ D:\JiraBoard_SQL\Jira\obj\Debug\net8.0\refint\Jira.dll
 D:\JiraBoard_SQL\Jira\obj\Debug\net8.0\Jira.pdb
 D:\JiraBoard_SQL\Jira\obj\Debug\net8.0\Jira.genruntimeconfig.cache
 D:\JiraBoard_SQL\Jira\obj\Debug\net8.0\ref\Jira.dll
+D:\JiraBoard_SQL\Jira\bin\Debug\net8.0\ClosedXML.dll
+D:\JiraBoard_SQL\Jira\bin\Debug\net8.0\ClosedXML.Parser.dll
+D:\JiraBoard_SQL\Jira\bin\Debug\net8.0\DocumentFormat.OpenXml.dll
+D:\JiraBoard_SQL\Jira\bin\Debug\net8.0\DocumentFormat.OpenXml.Framework.dll
+D:\JiraBoard_SQL\Jira\bin\Debug\net8.0\ExcelNumberFormat.dll
+D:\JiraBoard_SQL\Jira\bin\Debug\net8.0\RBush.dll
+D:\JiraBoard_SQL\Jira\bin\Debug\net8.0\SixLabors.Fonts.dll
+D:\JiraBoard_SQL\Jira\bin\Debug\net8.0\System.IO.Packaging.dll
 D:\JiraBoard_SQL\Jira\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

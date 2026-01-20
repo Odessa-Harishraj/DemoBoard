@@ -1,0 +1,15 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using JiraClone.Data;
+using System.Linq.Expressions;
+namespace JiraClone.Controllers
+{
+    public class WorkItemsController : Controller
+    {
+        private readonly AppDbContext _db;
+        public WorkItemsController(AppDbContext db)
+        {
+            _db = db;
+        }
+
+        // Helper to translate * wildcards to SQL LIKE and apply filter using

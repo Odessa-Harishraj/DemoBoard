@@ -95,7 +95,8 @@ namespace Jira.Migrations
                     b.Property<string>("BALead")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("BoardId")
+                    b.Property<int?>("BoardId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Comments")
@@ -129,10 +130,14 @@ namespace Jira.Migrations
                     b.Property<string>("Priority")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProjectId")
+                    b.Property<int?>("ProjectId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

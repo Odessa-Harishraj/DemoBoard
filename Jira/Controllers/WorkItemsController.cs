@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using JiraClone.Data;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using JiraClone.Data;
+using System.Linq.Expressions;
 namespace JiraClone.Controllers
 {
     public class WorkItemsController : Controller
@@ -13,13 +14,14 @@ namespace JiraClone.Controllers
 
         // ================= INDEX =================
         public IActionResult Index(
-    int? projectId,
-    int? boardId,
-    string? status,
-    string? item,
-    string? dev,
-    string? ba,
-    DateTime? demoDate)
+        int? projectId,
+        int? boardId,
+        string? status,
+        string? item,
+        string? dev,
+        string? ba,
+        string? type,
+        DateTime? demoDate)
         {
             var query = _db.WorkItems
                 .Include(w => w.Project)
@@ -36,17 +38,34 @@ namespace JiraClone.Controllers
                 query = query.Where(w => w.Status == status);
 
             if (!string.IsNullOrWhiteSpace(item))
-                query = query.Where(w => w.Item.Contains(item));
+            {
+                string like = item.Replace("*", "%");
+                query = query.Where(w => EF.Functions.Like(w.Item, like));
+            }
 
             if (!string.IsNullOrWhiteSpace(dev))
-                query = query.Where(w => w.Dev != null && w.Dev.Contains(dev));
+            {
+                string like = dev.Replace("*", "%");
+                query = query.Where(w => EF.Functions.Like(w.Dev, like));
+            }
 
             if (!string.IsNullOrWhiteSpace(ba))
-                query = query.Where(w => w.BA != null && w.BA.Contains(ba));
+            {
+                string like = ba.Replace("*", "%");
+                query = query.Where(w => EF.Functions.Like(w.BA, like));
+            }
 
             if (demoDate.HasValue)
+            {
                 query = query.Where(w => w.DemoDate.HasValue &&
                                          w.DemoDate.Value.Date == demoDate.Value.Date);
+            }
+
+            if (!string.IsNullOrWhiteSpace(type))
+            {
+                string like = type.Replace("*", "%");
+                query = query.Where(w => EF.Functions.Like(w.Type, like));
+            }
 
             // 🔹 Dropdown data
             ViewBag.Projects = _db.Projects.ToList();
@@ -62,6 +81,7 @@ namespace JiraClone.Controllers
             ViewData["SelectedItem"] = item;
             ViewData["SelectedDev"] = dev;
             ViewData["SelectedBA"] = ba;
+            ViewData["SelectedType"] = type;
             ViewData["SelectedDemoDate"] = demoDate?.ToString("yyyy-MM-dd");
 
             return View(query.ToList());
@@ -179,6 +199,7 @@ namespace JiraClone.Controllers
             item.DesignETA = model.DesignETA;
             item.ETA = model.ETA;
             item.DevETA = model.DevETA;
+            item.Type = model.Type;
 
             item.ProjectId = model.ProjectId;
             item.BoardId = model.BoardId;

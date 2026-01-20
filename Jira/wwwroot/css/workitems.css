@@ -1,6 +1,6 @@
 /* =========================
-   Status List Page Styles
-   ========================= */
+Status List Page Styles
+========================= */
 
 .status-list-page {
     padding: 20px;
@@ -8,10 +8,10 @@
     font-family: Arial, sans-serif;
 }
 
-    .status-list-page h2 {
-        margin-bottom: 20px;
-        font-weight: 600;
-    }
+.status-list-page h2 {
+    margin-bottom: 20px;
+    font-weight: 600;
+}
 
 /* =========================
    Filter Bar Styles
@@ -78,9 +78,9 @@
         }
 
     .workitems-filter .btn-secondary {
-        background-color: #6c757d;
+        background-color: #c4ced6;
         color: #ffffff;
-        border-color: #6c757d;
+        border-color: #c4ced6;
     }
 
         .workitems-filter .btn-secondary:hover {
@@ -119,7 +119,6 @@
         background-color: #eef5ff;
     }
 
-
     /* Base action link */
     .excel-table .action-link {
         display: inline-flex;
@@ -128,6 +127,12 @@
         height: 20px;
         width: 20px;
         text-decoration: none;
+        margin-right: 10px; /* add gap between icons */
+    }
+
+    /* remove margin on the last icon in the cell */
+    .excel-table td .action-link:last-child {
+        margin-right: 0;
     }
 
         /* Icon size follows parent */

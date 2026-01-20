@@ -1,0 +1,140 @@
+﻿using JiraClone.Data;
+using Microsoft.AspNetCore.Mvc;
+using ClosedXML.Excel;
+using System.Text.RegularExpressions;
+
+public class ImportController : Controller
+{
+    private readonly AppDbContext _context;
+
+    public ImportController(AppDbContext context)
+    {
+        _context = context;
+    }
+
+    public IActionResult Index()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Import(IFormFile file)
+    {
+        if (file == null || file.Length == 0)
+        {
+            ModelState.AddModelError("file", "Please upload an .xlsx file.");
+            return View("Index");
+        }
+
+        // Expect filename "ProjectName_BoardName.xlsx"
+        var baseName = Path.GetFileNameWithoutExtension(file.FileName);
+        var parts = baseName.Split('_');
+        if (parts.Length < 2)
+        {
+            ModelState.AddModelError("file", "Filename must be in format ProjectName_BoardName.xlsx");
+            return View("Index");
+        }
+        var projectName = parts[0].Trim();
+        var boardName = parts[1].Trim();
+
+        var project = _context.Projects.FirstOrDefault(p => p.Name == projectName);
+        if (project == null)
+        {
+            ModelState.AddModelError("file", $"Project '{projectName}' not found.");
+            return View("Index");
+        }
+        var board = _context.Boards.FirstOrDefault(b => b.Name == boardName && b.ProjectId == project.Id);
+        if (board == null)
+        {
+            ModelState.AddModelError("file", $"Board '{boardName}' not found in project '{projectName}'.");
+            return View("Index");
+        }
+
+        static string NormalizeHeaderKey(string s) => Regex.Replace(s ?? string.Empty, "\\s+", string.Empty);
+        static string? NormalizeValue(string? s)
+        {
+            if (string.IsNullOrWhiteSpace(s)) return null;
+            // Trim and collapse internal whitespace to a single space
+            return Regex.Replace(s.Trim(), "\\s+", " ");
+        }
+
+        int imported = 0;
+        using var stream = file.OpenReadStream();
+        using var workbook = new XLWorkbook(stream);
+        var ws = workbook.Worksheets.First();
+
+        // Detect header row (first row). Map headers to columns, random order allowed.
+        var headerRow = ws.Row(1);
+        var headerMap = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+        foreach (var cell in headerRow.CellsUsed())
+        {
+            var name = cell.GetString();
+            var normalized = NormalizeHeaderKey(name);
+            if (!string.IsNullOrEmpty(normalized))
+                headerMap[normalized] = cell.Address.ColumnNumber;
+        }
+
+        // Helpers to read cell values by normalized header key
+        int? GetCol(string headerName)
+        {
+            var key = NormalizeHeaderKey(headerName);
+            return headerMap.TryGetValue(key, out var col) ? col : (int?)null;
+        }
+        string? GetStr(IXLRow row, string headerName)
+        {
+            var col = GetCol(headerName);
+            if (col == null) return null;
+            return NormalizeValue(row.Cell(col.Value).GetString());
+        }
+        DateTime? ParseDate(IXLCell c)
+        {
+            if (c.IsEmpty()) return null;
+            if (c.DataType == XLDataType.DateTime) return c.GetDateTime();
+            var s = c.GetString();
+            if (DateTime.TryParse(s, out var dt)) return dt;
+            return null;
+        }
+        DateTime? GetDate(IXLRow row, string headerName)
+        {
+            var col = GetCol(headerName);
+            return col == null ? null : ParseDate(row.Cell(col.Value));
+        }
+
+        int lastRow = ws.LastRowUsed()?.RowNumber() ?? 1;
+        for (int r = 2; r <= lastRow; r++)
+        {
+            var row = ws.Row(r);
+
+            // Required: Item. Skip if empty after normalization.
+            string? itemVal = GetStr(row, "Item");
+            if (string.IsNullOrWhiteSpace(itemVal)) continue;
+
+            var wi = new WorkItem
+            {
+                Item = itemVal!,
+                ProjectId = project.Id,
+                BoardId = board.Id,
+                Description = GetStr(row, "Description"),
+                Status = GetStr(row, "Status"),
+                Priority = GetStr(row, "Priority"),
+                DevLead = GetStr(row, "DevLead") ?? GetStr(row, "Dev Lead"),
+                Dev = GetStr(row, "Dev"),
+                BALead = GetStr(row, "BALead") ?? GetStr(row, "BA Lead"),
+                BA = GetStr(row, "BA"),
+                Comments = GetStr(row, "Comments"),
+                DemoDate = GetDate(row, "DemoDate") ?? GetDate(row, "Demo Date"),
+                DesignETA = GetDate(row, "DesignETA") ?? GetDate(row, "Design ETA"),
+                ETA = GetDate(row, "ETA"),
+                DevETA = GetDate(row, "DevETA") ?? GetDate(row, "Dev ETA")
+            };
+
+            _context.WorkItems.Add(wi);
+            imported++;
+        }
+
+        _context.SaveChanges();
+        TempData["ImportMessage"] = $"Imported {imported} work items into {projectName}/{boardName}.";
+        return RedirectToAction("Index");
+    }
+}

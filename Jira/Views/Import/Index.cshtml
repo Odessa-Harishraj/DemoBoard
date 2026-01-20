@@ -1,21 +1,47 @@
 ﻿@{
     Layout = "_Layout";
 }
+@section Styles {
+    <link rel="stylesheet" href="~/css/import-page.css" />
+}
 
 <div class="import-page">
+
     <h2>Import Master Data</h2>
+
+    @if (TempData["ImportMessage"] != null)
+    {
+        <div class="alert-success">@TempData["ImportMessage"]</div>
+    }
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert-danger">
+            <ul>
+                @foreach (var err in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <li>@err.ErrorMessage</li>
+                }
+            </ul>
+        </div>
+    }
 
     <p>
         Upload Excel files to import Work Items.
-        <br />
+        <br /> 
+        <br/>
         <strong>File name format:</strong> ProjectName_BoardName.xlsx
     </p>
 
-    <form asp-action="Import" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" accept=".xlsx" required />
-        <br /><br />
-        <button type="submit" class="btn btn-primary">
-            Import
-        </button>
+    <form asp-action="Import" method="post" enctype="multipart/form-data" class="import-form">
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <label>Select File</label>
+            <input type="file" name="file" accept=".xlsx" required />
+        </div>
+
+        <div>
+            <button type="submit" class="btn-import">Import</button>
+        </div>
     </form>
 </div>

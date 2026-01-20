@@ -1,0 +1,115 @@
+﻿using JiraClone.Data;
+using Microsoft.AspNetCore.Mvc;
+using ClosedXML.Excel;
+
+public class ImportController : Controller
+{
+    private readonly AppDbContext _context;
+
+    public ImportController(AppDbContext context)
+    {
+        _context = context;
+    }
+
+    public IActionResult Index()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Import(IFormFile file)
+    {
+        if (file == null || file.Length == 0)
+        {
+            ModelState.AddModelError("file", "Please upload an .xlsx file.");
+            return View("Index");
+        }
+
+        // Expect filename "ProjectName_BoardName.xlsx"
+        var baseName = Path.GetFileNameWithoutExtension(file.FileName);
+        var parts = baseName.Split('_');
+        if (parts.Length < 2)
+        {
+            ModelState.AddModelError("file", "Filename must be in format ProjectName_BoardName.xlsx");
+            return View("Index");
+        }
+        var projectName = parts[0].Trim();
+        var boardName = parts[1].Trim();
+
+        var project = _context.Projects.FirstOrDefault(p => p.Name == projectName);
+        if (project == null)
+        {
+            ModelState.AddModelError("file", $"Project '{projectName}' not found.");
+            return View("Index");
+        }
+        var board = _context.Boards.FirstOrDefault(b => b.Name == boardName && b.ProjectId == project.Id);
+        if (board == null)
+        {
+            ModelState.AddModelError("file", $"Board '{boardName}' not found in project '{projectName}'.");
+            return View("Index");
+        }
+
+        int imported = 0;
+        using var stream = file.OpenReadStream();
+        using var workbook = new XLWorkbook(stream);
+        var ws = workbook.Worksheets.First();
+
+        // Detect header row (first row). Map headers to columns, random order allowed.
+        var headerRow = ws.Row(1);
+        var headerMap = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+        foreach (var cell in headerRow.CellsUsed())
+        {
+            var name = cell.GetString().Trim();
+            if (!string.IsNullOrEmpty(name))
+                headerMap[name] = cell.Address.ColumnNumber;
+        }
+
+        // Supported column names (any subset): Item, Description, Status, Priority, DevLead, Dev, BALead, BA, Comments,
+        // DemoDate, DesignETA, ETA, DevETA
+        DateTime? ParseDate(IXLCell c)
+        {
+            if (c.IsEmpty()) return null;
+            if (c.DataType == XLDataType.DateTime) return c.GetDateTime();
+            var s = c.GetString();
+            if (DateTime.TryParse(s, out var dt)) return dt;
+            return null;
+        }
+
+        int lastRow = ws.LastRowUsed()?.RowNumber() ?? 1;
+        for (int r = 2; r <= lastRow; r++)
+        {
+            var row = ws.Row(r);
+
+            // Required: Item. Skip if empty.
+            string itemVal = headerMap.TryGetValue("Item", out var itemCol) ? row.Cell(itemCol).GetString().Trim() : string.Empty;
+            if (string.IsNullOrWhiteSpace(itemVal)) continue;
+
+            var wi = new WorkItem
+            {
+                Item = itemVal,
+                ProjectId = project.Id,
+                BoardId = board.Id,
+                Description = headerMap.TryGetValue("Description", out var c1) ? row.Cell(c1).GetString() : null,
+                Status = headerMap.TryGetValue("Status", out var c2) ? row.Cell(c2).GetString() : null,
+                Priority = headerMap.TryGetValue("Priority", out var c3) ? row.Cell(c3).GetString() : null,
+                DevLead = headerMap.TryGetValue("DevLead", out var c4) ? row.Cell(c4).GetString() : null,
+                Dev = headerMap.TryGetValue("Dev", out var c5) ? row.Cell(c5).GetString() : null,
+                BALead = headerMap.TryGetValue("BALead", out var c6) ? row.Cell(c6).GetString() : null,
+                BA = headerMap.TryGetValue("BA", out var c7) ? row.Cell(c7).GetString() : null,
+                Comments = headerMap.TryGetValue("Comments", out var c8) ? row.Cell(c8).GetString() : null,
+                DemoDate = headerMap.TryGetValue("DemoDate", out var d1) ? ParseDate(row.Cell(d1)) : null,
+                DesignETA = headerMap.TryGetValue("DesignETA", out var d2) ? ParseDate(row.Cell(d2)) : null,
+                ETA = headerMap.TryGetValue("ETA", out var d3) ? ParseDate(row.Cell(d3)) : null,
+                DevETA = headerMap.TryGetValue("DevETA", out var d4) ? ParseDate(row.Cell(d4)) : null
+            };
+
+            _context.WorkItems.Add(wi);
+            imported++;
+        }
+
+        _context.SaveChanges();
+        TempData["ImportMessage"] = $"Imported {imported} work items into {projectName}/{boardName}.";
+        return RedirectToAction("Index");
+    }
+}

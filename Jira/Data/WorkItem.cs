@@ -21,6 +21,8 @@ namespace JiraClone.Data
 
         public string? Comments { get; set; }
 
+        public string? Type { get; set; }
+
         public DateTime? DemoDate { get; set; }
         public DateTime? DesignETA { get; set; }
         public DateTime? ETA { get; set; }

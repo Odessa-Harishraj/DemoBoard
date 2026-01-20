@@ -1,18 +1,18 @@
 wwwroot\css\board-create.css
 wwwroot\css\boards.css
+wwwroot\css\import-page.css
 wwwroot\css\project-create.css
 wwwroot\css\projects.css
 wwwroot\css\site.css
 wwwroot\css\status-create.css
 wwwroot\css\status-delete.css
 wwwroot\css\status-list.css
-wwwroot\css\workitem-create.css
 wwwroot\css\workitem-delete.css
-wwwroot\css\workitems.css
 wwwroot\favicon.ico
 wwwroot\images\clean.png
 wwwroot\images\delete.png
 wwwroot\images\edit.png
+wwwroot\images\search.png
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
@@ -71,3 +71,5 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
+wwwroot\css\workitem-create.css
+wwwroot\css\workitems.css

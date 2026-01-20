@@ -15,6 +15,7 @@
     string selectedBA = ViewData["SelectedBA"] as string ?? "";
     string selectedStatus = ViewData["SelectedStatus"] as string ?? "";
     string selectedDemoDate = ViewData["SelectedDemoDate"] as string ?? "";
+    string selectedType = ViewData["selectedType"] as string ?? "";
 }
 
 @section Styles {
@@ -25,11 +26,10 @@
 
         <a asp-action="Create" class="create-workitem">Create Work Item</a>
 
-        <!-- SEARCH FILTER -->
+        <!-- Search Filter -->
         <form method="get">
             <div class="workitems-filter">
 
-            <!-- Project -->
                 <div class="filter-group">
                     <label>Project</label>
                     <select name="projectId" id="projectSelect" class="form-control">
@@ -44,7 +44,7 @@
                     </select>
                 </div>
 
-                <!-- Board -->
+
                 <div class="filter-group">
                     <label>Board</label>
                     <select name="boardId" id="boardSelect" class="form-control">
@@ -59,7 +59,7 @@
                     </select>
                 </div>
 
-                <!-- Status -->
+
                 <div class="filter-group">
                     <label>Status</label>
                     <select name="status" class="form-control">
@@ -74,7 +74,7 @@
                     </select>
                 </div>
 
-                <!-- Item -->
+
                 <div class="filter-group">
                     <label>Item</label>
                     <input type="text"
@@ -83,7 +83,7 @@
                            value="@selectedItem" />
                 </div>
 
-                <!-- Dev -->
+
                 <div class="filter-group">
                     <label>Dev</label>
                     <input type="text"
@@ -92,7 +92,7 @@
                            value="@selectedDev" />
                 </div>
 
-                <!-- BA -->
+
                 <div class="filter-group">
                     <label>BA</label>
                     <input type="text"
@@ -101,7 +101,14 @@
                            value="@selectedBA" />
                 </div>
 
-                <!-- Demo Date -->
+                <div class="filter-group">
+                    <label>Type</label>
+                    <input type="text"
+                           name="type"
+                           class="form-control"
+                           value="@selectedType" />
+                </div>
+
                 <div class="filter-group">
                     <label>Demo Date</label>
                     <input type="date"
@@ -110,17 +117,18 @@
                            value="@selectedDemoDate" />
                 </div>
 
-                <!-- Buttons -->
                 <div class="filter-buttons"> 
-                    <button type="submit" class="btn btn-primary">Search</button>
-                    <a asp-action="Index" class="btn btn-secondary">Clear</a> 
+                    <button type="submit" class="btn btn-primary">
+                        <img src="~/images/search.png" alt="Search" style="width:20px;height:20px;" />
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <img src="~/images/clean.png" alt="Clear" style="width:20px;height:20px;" />
+                    </a> 
                 </div>
-
-                                                                                                                                                                    
             </div>
         </form>
 
-        <!-- WORKITEMS TABLE -->
+        <!-- WorkItem Grid -->
         <table class="excel-table">
             <thead>
                 <tr>
@@ -129,6 +137,7 @@
                     <th>Board</th>
                     <th>Item</th>
                     <th>Description</th>
+                    <th>Type</th>
                     <th>Design ETA</th>
                     <th>ETA</th>
                     <th>Dev ETA</th>
@@ -152,6 +161,7 @@
                             <td>@w.Board?.Name</td>
                             <td>@w.Item</td>
                             <td>@w.Description</td>
+                            <td>@w.Type</td>
                             <td>@w.DesignETA?.ToString("MM-dd-yyy")</td>
                             <td>@w.ETA?.ToString("MM-dd-yyy")</td>
                             <td>@w.DevETA?.ToString("MM-dd-yyy")</td>
