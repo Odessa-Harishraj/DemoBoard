@@ -1,0 +1,221 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using JiraClone.Data;
+namespace JiraClone.Controllers
+{
+    public class WorkItemsController : Controller
+    {
+        private readonly AppDbContext _db;
+        public WorkItemsController(AppDbContext db)
+        {
+            _db = db;
+        }
+
+        // ================= INDEX =================
+        public IActionResult Index(
+    int? projectId,
+    int? boardId,
+    string? status,
+    string? item,
+    string? dev,
+    string? ba,
+    DateTime? demoDate)
+        {
+            var query = _db.WorkItems
+                .Include(w => w.Project)
+                .Include(w => w.Board)
+                .AsQueryable();
+
+            if (projectId.HasValue)
+                query = query.Where(w => w.ProjectId == projectId.Value);
+
+            if (boardId.HasValue)
+                query = query.Where(w => w.BoardId == boardId.Value);
+
+            if (!string.IsNullOrWhiteSpace(status))
+                query = query.Where(w => w.Status == status);
+
+            if (!string.IsNullOrWhiteSpace(item))
+                query = query.Where(w => w.Item.Contains(item));
+
+            if (!string.IsNullOrWhiteSpace(dev))
+                query = query.Where(w => w.Dev != null && w.Dev.Contains(dev));
+
+            if (!string.IsNullOrWhiteSpace(ba))
+                query = query.Where(w => w.BA != null && w.BA.Contains(ba));
+
+            if (demoDate.HasValue)
+                query = query.Where(w => w.DemoDate.HasValue &&
+                                         w.DemoDate.Value.Date == demoDate.Value.Date);
+
+            // 🔹 Dropdown data
+            ViewBag.Projects = _db.Projects.ToList();
+            ViewBag.Boards = projectId.HasValue
+                ? _db.Boards.Where(b => b.ProjectId == projectId.Value).ToList()
+                : new List<Board>();
+            ViewBag.Statuses = _db.StatusConfigs.ToList();
+
+            // 🔹 Selected values (single source of truth)
+            ViewData["SelectedProjectId"] = projectId;
+            ViewData["SelectedBoardId"] = boardId;
+            ViewData["SelectedStatus"] = status;
+            ViewData["SelectedItem"] = item;
+            ViewData["SelectedDev"] = dev;
+            ViewData["SelectedBA"] = ba;
+            ViewData["SelectedDemoDate"] = demoDate?.ToString("yyyy-MM-dd");
+
+            return View(query.ToList());
+        }
+
+
+        // ================= CREATE =================
+        public IActionResult Create()
+        {
+            ViewBag.Projects = _db.Projects.ToList();
+            ViewBag.Boards = new List<Board>();
+            ViewBag.Statuses = _db.StatusConfigs.ToList();
+            return View(new WorkItem());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create([Bind(Prefix = "")] WorkItem item)
+        {
+            ViewBag.Projects = _db.Projects.ToList();
+            ViewBag.Statuses = _db.StatusConfigs.ToList();
+            ViewBag.Boards = item.ProjectId.HasValue
+                ? _db.Boards.Where(b => b.ProjectId == item.ProjectId.Value).ToList()
+                : new List<Board>();
+
+            if (!ModelState.IsValid)
+            {
+                // Expose server-side validation errors to help diagnose why ModelState is invalid
+                var errors = ModelState.Where(kvp => kvp.Value!.Errors.Count > 0)
+                    .Select(kvp => new { Field = kvp.Key, Messages = kvp.Value!.Errors.Select(e => e.ErrorMessage).ToList() })
+                    .ToList();
+                ViewData["ValidationErrors"] = errors;
+                return View(item);
+            }
+
+            if (!item.ProjectId.HasValue || !_db.Projects.Any(p => p.Id == item.ProjectId.Value))
+            {
+                ModelState.AddModelError(nameof(item.ProjectId), "Invalid Project selected");
+                return View(item);
+            }
+
+            if (!item.BoardId.HasValue || !_db.Boards.Any(b => b.Id == item.BoardId.Value))
+            {
+                ModelState.AddModelError(nameof(item.BoardId), "Invalid Board selected");
+                return View(item);
+            }
+
+            try
+            {
+                _db.WorkItems.Add(item);
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, $"Failed to save: {ex.Message}");
+                return View(item);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        // ================= EDIT =================
+        public IActionResult Edit(int id)
+        {
+            var item = _db.WorkItems
+                .Include(w => w.Board)
+                .ThenInclude(b => b.Project)
+                .FirstOrDefault(w => w.Id == id);
+
+            if (item == null)
+                return NotFound();
+
+            ViewBag.Projects = _db.Projects.ToList();
+            ViewBag.Boards = _db.Boards
+                .Where(b => b.ProjectId == item.ProjectId)
+                .ToList();
+            ViewBag.Statuses = _db.StatusConfigs.ToList();
+
+            return View(item);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit([Bind(Prefix = "")] WorkItem model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Projects = _db.Projects.ToList();
+                ViewBag.Boards = _db.Boards
+                    .Where(b => b.ProjectId == model.ProjectId)
+                    .ToList();
+                ViewBag.Statuses = _db.StatusConfigs.ToList();
+
+                return View(model);
+            }
+
+            // 🔑 LOAD TRACKED ENTITY
+            var item = _db.WorkItems.FirstOrDefault(w => w.Id == model.Id);
+            if (item == null)
+                return NotFound();
+
+            // 🔁 COPY VALUES (LIKE STATUS, BUT SAFE)
+            item.Item = model.Item;
+            item.Description = model.Description;
+            item.Status = model.Status;
+            item.Priority = model.Priority;
+
+            item.DevLead = model.DevLead;
+            item.Dev = model.Dev;
+            item.BALead = model.BALead;
+            item.BA = model.BA;
+            item.Comments = model.Comments;
+
+            item.DemoDate = model.DemoDate;
+            item.DesignETA = model.DesignETA;
+            item.ETA = model.ETA;
+            item.DevETA = model.DevETA;
+
+            item.ProjectId = model.ProjectId;
+            item.BoardId = model.BoardId;
+
+            _db.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
+
+        // ================= DELETE =================
+        public IActionResult Delete(int id)
+        {
+            var item = _db.WorkItems.Include(w => w.Board).Include(w => w.Project).FirstOrDefault(w => w.Id == id);
+            if (item == null) return NotFound();
+            return View(item);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var item = _db.WorkItems.Find(id);
+            if (item == null) return NotFound();
+            _db.WorkItems.Remove(item);
+            _db.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
+        // ================= AJAX: GET BOARDS BY PROJECT =================
+        [HttpGet]
+        public IActionResult GetBoardsByProject(int projectId)
+        {
+            var boards = _db.Boards.Where(b => b.ProjectId == projectId)
+                .Select(b => new { b.Id, b.Name }).ToList();
+            return Json(boards);
+        }
+    }
+}

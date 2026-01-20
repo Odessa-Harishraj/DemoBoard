@@ -1,0 +1,156 @@
+﻿@using JiraClone.Data
+@model JiraClone.Data.WorkItem
+@{
+    Layout = "_Layout";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/workitem-create.css" />
+}
+<div class="workitem-create-page">
+    <h2>Create WorkItem</h2>
+
+    @if (ViewData["ValidationErrors"] is IEnumerable<dynamic> errors)
+    {
+        <div class="alert alert-danger">
+            <strong>Validation failed.</strong>
+            <ul>
+                @foreach (var e in errors)
+                {
+                    foreach (var m in e.Messages)
+                    {
+                        <li>@e.Field: @m</li>
+                    }
+                }
+            </ul>
+        </div>
+    }
+
+    <div class="workitem-create-form">
+        <form asp-controller="WorkItems" asp-action="Create" method="post">
+
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <label>Project</label>
+                <select asp-for="ProjectId" id="projectSelect" class="form-control" required onchange="loadBoards()">
+                    <option value="">-- Select Project --</option>
+                    @foreach (var p in ViewBag.Projects as List<Project>)
+                    {
+                        <option value="@p.Id">@p.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="ProjectId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Board</label>
+                <select asp-for="BoardId" id="boardSelect" class="form-control" required>
+                    <option value="">-- Select Board --</option>
+                </select>
+                <span asp-validation-for="BoardId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Item</label>
+                <input asp-for="Item" class="form-control" />
+                <span asp-validation-for="Item" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Status</label>
+                <select asp-for="Status" class="form-control">
+                    <option value="">Select Status</option>
+                    @foreach (var s in ViewBag.Statuses as List<StatusConfig>)
+                    {
+                        <option value="@s.Name">@s.Name</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Dev Lead</label>
+                <input asp-for="DevLead" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Dev</label>
+                <input asp-for="Dev" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>BA Lead</label>
+                <input asp-for="BALead" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>BA</label>
+                <input asp-for="BA" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Priority</label>
+                <input asp-for="Priority" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Comments</label>
+                <input asp-for="Comments" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Demo Date</label>
+                <input asp-for="DemoDate" type="date" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Design ETA</label>
+                <input asp-for="DesignETA" type="date" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>ETA</label>
+                <input asp-for="ETA" type="date" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Dev ETA</label>
+                <input asp-for="DevETA" type="date" class="form-control" />
+            </div>
+
+            <button type="submit" class="btn-save">Save</button>
+            <a asp-action="Index" class="btn-cancel">Cancel</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function loadBoards() {
+            const projectId = document.getElementById("projectSelect").value;
+            const boardSelect = document.getElementById("boardSelect");
+
+            boardSelect.innerHTML = '<option value="">-- Select Board --</option>';
+
+            if (!projectId) {
+                return;
+            }
+
+            fetch('/WorkItems/GetBoardsByProject?projectId=' + projectId)
+                .then(r => r.json())
+                .then(data => {
+                    data.forEach(b => {
+                        const opt = document.createElement('option');
+                        opt.value = b.id;
+                        opt.text = b.name;
+                        boardSelect.appendChild(opt);
+                    });
+                })
+                .catch(err => console.error(err));
+        }
+    </script>
+}

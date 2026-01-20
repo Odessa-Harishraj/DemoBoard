@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace JiraClone.Data
 {
@@ -6,7 +7,9 @@ namespace JiraClone.Data
     {
         public int Id { get; set; }
 
+        [Required]
         public string Item { get; set; } = string.Empty;
+
         public string? Description { get; set; }
         public string? Status { get; set; }
         public string? Priority { get; set; }
@@ -23,11 +26,13 @@ namespace JiraClone.Data
         public DateTime? ETA { get; set; }
         public DateTime? DevETA { get; set; }
 
-        // ✅ REQUIRED FKs
-        public int ProjectId { get; set; }
+        // REQUIRED FKs (nullable so Required works)
+        [Required(ErrorMessage = "Please select a Project")]
+        public int? ProjectId { get; set; }
         public Project? Project { get; set; }
 
-        public int BoardId { get; set; }
+        [Required(ErrorMessage = "Please select a Board")]
+        public int? BoardId { get; set; }
         public Board? Board { get; set; }
     }
 }

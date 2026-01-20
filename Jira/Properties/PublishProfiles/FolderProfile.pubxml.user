@@ -2,8 +2,8 @@
 <!-- https://go.microsoft.com/fwlink/?LinkID=208121. -->
 <Project>
   <PropertyGroup>
-    <_PublishTargetUrl>D:\JiraPublish</_PublishTargetUrl>
-    <History>True|2026-01-16T14:11:22.9315884Z||;True|2026-01-13T13:03:43.3916798+05:30||;</History>
+    <_PublishTargetUrl>D:\PublishTest</_PublishTargetUrl>
+    <History>True|2026-01-20T04:45:32.1460401Z||;True|2026-01-20T10:10:38.9199494+05:30||;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>

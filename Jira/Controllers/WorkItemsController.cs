@@ -78,30 +78,48 @@ namespace JiraClone.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(WorkItem item)
+        [ValidateAntiForgeryToken]
+        public IActionResult Create([Bind(Prefix = "")] WorkItem item)
         {
+            ViewBag.Projects = _db.Projects.ToList();
+            ViewBag.Statuses = _db.StatusConfigs.ToList();
+            ViewBag.Boards = item.ProjectId.HasValue
+                ? _db.Boards.Where(b => b.ProjectId  == item.ProjectId.Value).ToList()
+                : new List<Board>();
+
             if (!ModelState.IsValid)
             {
-                ViewBag.Projects = _db.Projects.ToList();
-                ViewBag.Boards = _db.Boards.Where(b => b.ProjectId == item.ProjectId).ToList();
-                ViewBag.Statuses = _db.StatusConfigs.ToList();
+                var errors = ModelState.Where(kvp => kvp.Value!.Errors.Count > 0)
+                    .Select(kvp => new { Field = kvp.Key, Messages = kvp.Value!.Errors.Select(e => e.ErrorMessage).ToList() })
+                    .ToList();
+                ViewData["ValidationErrors"] = errors;
                 return View(item);
             }
 
-            // ensure FK exists
-            if (!_db.Boards.Any(b => b.Id == item.BoardId))
+            if (!item.ProjectId.HasValue || !_db.Projects.Any(p => p.Id == item.ProjectId.Value))
             {
-                ModelState.AddModelError("BoardId", "Invalid Board selected");
-                ViewBag.Projects = _db.Projects.ToList();
-                ViewBag.Boards = _db.Boards.Where(b => b.ProjectId == item.ProjectId).ToList();
-                ViewBag.Statuses = _db.StatusConfigs.ToList();
+                ModelState.AddModelError(nameof(item.ProjectId), "Invalid Project selected");
                 return View(item);
             }
 
-            _db.WorkItems.Add(item);
-            _db.SaveChanges();
+            if (!item.BoardId.HasValue || !_db.Boards.Any(b => b.Id == item.BoardId.Value))
+            {
+                ModelState.AddModelError(nameof(item.BoardId), "Invalid Board selected");
+                return View(item);
+            }
 
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                _db.WorkItems.Add(item);
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, $"Failed to save: {ex.Message}");
+                return View(item);
+            }
+
+            return RedirectToAction("Index");
         }
 
         // ================= EDIT =================
@@ -127,7 +145,7 @@ namespace JiraClone.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(WorkItem model)
+        public IActionResult Edit([Bind(Prefix = "")] WorkItem model)
         {
             if (!ModelState.IsValid)
             {

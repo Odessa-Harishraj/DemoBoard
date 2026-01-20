@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<div class="import-page">
+    <h2>Import Master Data</h2>
+
+    <p>
+        Upload Excel files to import Work Items.
+        <br />
+        <strong>File name format:</strong> ProjectName_BoardName.xlsx
+    </p>
+
+    <form asp-action="Import" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".xlsx" required />
+        <br /><br />
+        <button type="submit" class="btn btn-primary">
+            Import
+        </button>
+    </form>
+</div>
