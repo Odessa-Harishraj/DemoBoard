@@ -1,0 +1,82 @@
+/* =========================
+   Import Page Styles
+   ========================= */
+
+.import-page h2 {
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.import-page p {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #495057;
+}
+
+/* Form container */
+.import-form {
+    max-width: 450px;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+    /* Form groups */
+    .import-form .form-group {
+        margin-bottom: 15px;
+    }
+
+    .import-form label {
+        font-weight: 500;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    /* File input */
+    .import-form input[type="file"] {
+        width: 100%;
+        padding: 6px 10px;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+    }
+
+        .import-form input[type="file"]:focus {
+            outline: none;
+            border-color: #0d6efd;
+        }
+
+    /* Buttons */
+    .import-form .btn-import {
+        background-color: #0d6efd;
+        color: #ffffff;
+        border: none;
+        padding: 8px 18px;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+        .import-form .btn-import:hover {
+            background-color: #0b5ed7;
+        }
+
+/* Alerts */
+.alert-success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #badbcc;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #842029;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #f5c2c7;
+}

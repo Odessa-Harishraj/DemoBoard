@@ -1,0 +1,80 @@
+﻿@using JiraClone.Data
+@model List<WorkItem>
+
+@{
+    Layout = "_Layout";
+
+    var projects = ViewBag.Projects as List<Project> ?? new();
+    var boards = ViewBag.Boards as List<Board> ?? new();
+    var statuses = ViewBag.Statuses as List<StatusConfig> ?? new();
+    var itemValues = ViewBag.ItemValues as List<string> ?? new();
+    var devValues = ViewBag.DevValues as List<string> ?? new();
+    var baValues = ViewBag.BAValues as List<string> ?? new();
+    var typeValues = ViewBag.TypeValues as List<string> ?? new();
+    var demoDateValues = ViewBag.DemoDateValues as List<string> ?? new();
+
+    int? selectedProjectId = ViewData["SelectedProjectId"] as int?;
+    int? selectedBoardId = ViewData["SelectedBoardId"] as int?;
+
+    // Multi-select selected values
+    var selectedStatuses = ViewBag.SelectedStatuses as List<string> ?? new();
+    var selectedItems = ViewBag.SelectedItems as List<string> ?? new();
+    var selectedDevs = ViewBag.SelectedDevs as List<string> ?? new();
+    var selectedBAs = ViewBag.SelectedBAs as List<string> ?? new();
+    var selectedTypes = ViewBag.SelectedTypes as List<string> ?? new();
+    var selectedDemoDates = ViewBag.SelectedDemoDates as List<string> ?? new();
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/workitems.css" />
+}
+<div class="status-list-page">
+        <h2>Work Items</h2>
+
+        <a asp-action="Create" class="create-workitem">Create Work Item</a>
+
+        <!-- Search Filter -->
+        <form id="workitemsFilterForm" method="get">
+            <div class="workitems-filter">
+
+                <div class="filter-group">
+                    <label>Project</label>
+                    <select name="projectId" id="projectSelect" class="form-control">
+                        <option value="">All Projects</option>
+                        @foreach (var p in projects)
+                        {
+                            <option value="@p.Id"
+                                    selected="@(selectedProjectId == p.Id)">
+                                @p.Name
+                            </option>
+                        }
+                    </select>
+                </div>
+
+
+                <div class="filter-group">
+                    <label>Board</label>
+                    <select name="boardId" id="boardSelect" class="form-control">
+                        <option value="">All Boards</option>
+                        @foreach (var b in boards)
+                        {
+                            <option value="@b.Id"
+                                    selected="@(selectedBoardId == b.Id)">
+                                @b.Name
+                            </option>
+                        }
+                    </select>
+                </div>
+
+
+                <div class="filter-group" data-filter="statuses">
+                    <label>Status</label>
+                    <div class="filter-trigger" data-target="statusPanel">
+                        <span class="label">Filter by Status</span>
+                        <span class="icon"></span>
+                    </div>
+                    <div id="statusPanel" class="filter-panel">
+                        <div class="panel-header">
+                            <input type="text" placeholder="Search..." data-filter-input="statuses" />
+                        </div>
+                        <div id="statusesCheckboxes" class="panel-body

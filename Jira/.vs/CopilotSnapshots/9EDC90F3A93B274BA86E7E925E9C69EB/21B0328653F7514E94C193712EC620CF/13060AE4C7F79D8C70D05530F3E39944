@@ -1,0 +1,284 @@
+﻿@using JiraClone.Data
+@model List<WorkItem>
+
+@{
+    Layout = "_Layout";
+
+    var projects = ViewBag.Projects as List<Project> ?? new();
+    var boards = ViewBag.Boards as List<Board> ?? new();
+    var statuses = ViewBag.Statuses as List<StatusConfig> ?? new();
+    var itemValues = ViewBag.ItemValues as List<string> ?? new();
+    var devValues = ViewBag.DevValues as List<string> ?? new();
+    var baValues = ViewBag.BAValues as List<string> ?? new();
+    var typeValues = ViewBag.TypeValues as List<string> ?? new();
+
+    int? selectedProjectId = ViewData["SelectedProjectId"] as int?;
+    int? selectedBoardId = ViewData["SelectedBoardId"] as int?;
+    string selectedItem = ViewData["SelectedItem"] as string ?? "";
+    string selectedDev = ViewData["SelectedDev"] as string ?? "";
+    string selectedBA = ViewData["SelectedBA"] as string ?? "";
+    string selectedStatus = ViewData["SelectedStatus"] as string ?? "";
+    string selectedDemoDate = ViewData["SelectedDemoDate"] as string ?? "";
+    string selectedType = ViewData["selectedType"] as string ?? "";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/workitems.css" />
+}
+<div class="status-list-page">
+        <h2>Work Items</h2>
+
+        <a asp-action="Create" class="create-workitem">Create Work Item</a>
+
+        <!-- Search Filter -->
+        <form id="workitemsFilterForm" method="get">
+            <div class="workitems-filter">
+
+                <div class="filter-group">
+                    <label>Project</label>
+                    <select name="projectId" id="projectSelect" class="form-control">
+                        <option value="">All Projects</option>
+                        @foreach (var p in projects)
+                        {
+                            <option value="@p.Id"
+                                    selected="@(selectedProjectId == p.Id)">
+                                @p.Name
+                            </option>
+                        }
+                    </select>
+                </div>
+
+
+                <div class="filter-group">
+                    <label>Board</label>
+                    <select name="boardId" id="boardSelect" class="form-control">
+                        <option value="">All Boards</option>
+                        @foreach (var b in boards)
+                        {
+                            <option value="@b.Id"
+                                    selected="@(selectedBoardId == b.Id)">
+                                @b.Name
+                            </option>
+                        }
+                    </select>
+                </div>
+
+
+                <div class="filter-group">
+                    <label>Status</label>
+                    <select name="status" id="statusSelect" class="form-control">
+                        <option value="">All Status</option>
+                        @foreach (var s in statuses)
+                        {
+                            <option value="@s.Name"
+                                    selected="@(selectedStatus == s.Name)">
+                                @s.Name
+                            </option>
+                        }
+                    </select>
+                </div>
+
+
+                <div class="filter-group">
+                    <label>Item</label>
+                    <select name="item" id="itemSelect" class="form-control">
+                        <option value="">All</option>
+                        @foreach (var v in itemValues)
+                        {
+                            <option value="@v" selected="@(selectedItem == v)">@v</option>
+                        }
+                    </select>
+                </div>
+
+
+                <div class="filter-group">
+                    <label>Dev</label>
+                    <select name="dev" id="devSelect" class="form-control">
+                        <option value="">All</option>
+                        @foreach (var v in devValues)
+                        {
+                            <option value="@v" selected="@(selectedDev == v)">@v</option>
+                        }
+                    </select>
+                </div>
+
+
+                <div class="filter-group">
+                    <label>BA</label>
+                    <select name="ba" id="baSelect" class="form-control">
+                        <option value="">All</option>
+                        @foreach (var v in baValues)
+                        {
+                            <option value="@v" selected="@(selectedBA == v)">@v</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Type</label>
+                    <select name="type" id="typeSelect" class="form-control">
+                        <option value="">All</option>
+                        @foreach (var v in typeValues)
+                        {
+                            <option value="@v" selected="@(selectedType == v)">@v</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Demo Date</label>
+                    <input type="date"
+                           name="demoDate"
+                           class="form-control"
+                           value="@selectedDemoDate" />
+                </div>
+
+                <div class="filter-buttons"> 
+                    <button type="submit" class="btn btn-primary">
+                        <img src="~/images/search.png" alt="Search" style="width:20px;height:20px;" />
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <img src="~/images/clean.png" alt="Clear" style="width:20px;height:20px;" />
+                    </a> 
+                </div>
+            </div>
+        </form>
+
+        <!-- WorkItem Grid -->
+        <table class="excel-table">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Project</th>
+                    <th>Board</th>
+                    <th>Item</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Design ETA</th>
+                    <th>ETA</th>
+                    <th>Dev ETA</th>
+                    <th>Dev Lead</th>
+                    <th>Dev</th>
+                    <th>BA Lead</th>
+                    <th>BA</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Any())
+                {
+                    int i = 1;
+                    foreach (var w in Model)
+                    {
+                        <tr>
+                            <td>@i</td>
+                            <td>@w.Project?.Name </td>
+                            <td>@w.Board?.Name</td>
+                            <td>@w.Item</td>
+                            <td>@w.Description</td>
+                            <td>@w.Type</td>
+                            <td>@w.DesignETA?.ToString("MM-dd-yyy")</td>
+                            <td>@w.ETA?.ToString("MM-dd-yyy")</td>
+                            <td>@w.DevETA?.ToString("MM-dd-yyy")</td>
+                            <td>@w.DevLead</td>
+                            <td>@w.Dev</td>
+                            <td>@w.BALead</td>
+                            <td>@w.BA</td>
+                            <td>@w.Status</td>
+                            <td>
+                            <a asp-action="Edit"
+                               asp-route-id="@w.Id"
+                               class="action-link action-link-edit"
+                               title="Edit" alt="Edit">
+                                <img src="~/images/edit.png" alt="Edit" />
+                            </a>
+
+                            <a asp-action="Delete"
+                               asp-route-id="@w.Id"
+                               class="action-link action-link-delete"
+                               title="Delete" alt="Delete">
+                                <img src="~/images/delete.png" alt="Delete" />
+                            </a>
+                            </td>
+                        </tr>
+                        i++;
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="14" class="text-center">No WorkItems found.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+</div>
+
+@section Scripts {
+    <script>
+        const filterForm = document.getElementById('workitemsFilterForm');
+        const projectSelect = document.getElementById('projectSelect');
+        const boardSelect = document.getElementById('boardSelect');
+        const statusSelect = document.getElementById('statusSelect');
+        const itemSelect = document.getElementById('itemSelect');
+        const devSelect = document.getElementById('devSelect');
+        const baSelect = document.getElementById('baSelect');
+        const typeSelect = document.getElementById('typeSelect');
+        const selectedBoardId = '@selectedBoardId';
+
+        let submitTimer = null;
+        let isUpdatingBoards = false;
+        function scheduleSubmit() {
+            if (isUpdatingBoards) return; // don't submit while boards are updating
+            if (submitTimer) clearTimeout(submitTimer);
+            submitTimer = setTimeout(() => {
+                filterForm.requestSubmit();
+                submitTimer = null;
+            }, 200);
+        }
+
+        function loadBoards(projectId, submitAfter = true) {
+            isUpdatingBoards = true;
+            boardSelect.innerHTML = '<option value="">All Boards</option>';
+
+            if (!projectId) {
+                isUpdatingBoards = false;
+                if (submitAfter) scheduleSubmit();
+                return;
+            }
+
+            fetch(`/WorkItems/GetBoardsByProject?projectId=${projectId}`)
+                .then(res => res.json())
+                .then(data => {
+                    data.forEach(b => {
+                        const opt = document.createElement('option');
+                        opt.value = b.id;
+                        opt.text = b.name;
+                        if (b.id == selectedBoardId) {
+                            opt.selected = true;
+                        }
+                        boardSelect.add(opt);
+                    });
+                })
+                .finally(() => {
+                    isUpdatingBoards = false;
+                    if (submitAfter) scheduleSubmit();
+                });
+        }
+
+        // Initial load: populate boards only (no submit)
+        if (projectSelect.value) {
+            loadBoards(projectSelect.value, false);
+        }
+
+        // Change project → reload boards and submit once
+        projectSelect.addEventListener('change', function () {
+            loadBoards(this.value, true);
+        });
+
+        // Change board/status/item/dev/ba/type → submit once
+        [boardSelect, statusSelect, itemSelect, devSelect, baSelect, typeSelect]
+            .forEach(el => el.addEventListener('change', scheduleSubmit));
+    </script>
+}

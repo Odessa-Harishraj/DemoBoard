@@ -1,0 +1,273 @@
+﻿using JiraClone.Data;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
+namespace JiraClone.Controllers
+{
+    public class WorkItemsController : Controller
+    {
+        private readonly AppDbContext _db;
+        public WorkItemsController(AppDbContext db)
+        {
+            _db = db;
+        }
+
+        // Helper to translate * wildcards to SQL LIKE and apply filter using an expression (EF-translatable)
+        private static IQueryable<WorkItem> ApplyWildcardFilter(IQueryable<WorkItem> query, Expression<Func<WorkItem, string?>> selector, string? term)
+        {
+            if (string.IsNullOrWhiteSpace(term)) return query; // no filter
+            term = term.Trim();
+            if (term == "*") return query; // all values
+
+            string like = term.Replace("*", "%");
+            if (like == "%") return query;
+
+            var param = selector.Parameters[0];
+            var body = selector.Body;
+
+            var notNull = Expression.NotEqual(body, Expression.Constant(null, typeof(string)));
+            var efFunctions = Expression.Property(null, typeof(EF), nameof(EF.Functions));
+            var likeMethod = typeof(DbFunctionsExtensions).GetMethod(
+                nameof(DbFunctionsExtensions.Like),
+                new[] { typeof(DbFunctions), typeof(string), typeof(string) }
+            )!;
+            var likeCall = Expression.Call(likeMethod, efFunctions, body, Expression.Constant(like));
+            var and = Expression.AndAlso(notNull, likeCall);
+
+            var lambda = Expression.Lambda<Func<WorkItem, bool>>(and, param);
+            return query.Where(lambda);
+        }
+
+        // ================= INDEX =================
+        public IActionResult Index(
+            int? projectId,
+            int? boardId,
+            List<string>? statuses,
+            List<string>? items,
+            List<string>? devs,
+            List<string>? bas,
+            List<string>? types,
+            List<string>? demoDates)
+        {
+            var query = _db.WorkItems
+                .Include(w => w.Project)
+                .Include(w => w.Board)
+                .AsQueryable();
+
+            if (projectId.HasValue)
+                query = query.Where(w => w.ProjectId == projectId.Value);
+
+            if (boardId.HasValue)
+                query = query.Where(w => w.BoardId == boardId.Value);
+
+            if (statuses != null && statuses.Any())
+                query = query.Where(w => w.Status != null && statuses.Contains(w.Status));
+
+            if (items != null && items.Any())
+                query = query.Where(w => items.Contains(w.Item));
+
+            if (devs != null && devs.Any())
+                query = query.Where(w => w.Dev != null && devs.Contains(w.Dev));
+
+            if (bas != null && bas.Any())
+                query = query.Where(w => w.BA != null && bas.Contains(w.BA));
+
+            if (types != null && types.Any())
+                query = query.Where(w => w.Type != null && types.Contains(w.Type));
+
+            if (demoDates != null && demoDates.Any())
+            {
+                var datesOnly = new HashSet<DateTime>(demoDates
+                    .Select(s => DateTime.TryParse(s, out var d) ? d.Date : (DateTime?)null)
+                    .Where(d => d.HasValue)!
+                    .Select(d => d!.Value));
+                if (datesOnly.Count > 0)
+                {
+                    query = query.Where(w => w.DemoDate.HasValue && datesOnly.Contains(w.DemoDate.Value.Date));
+                }
+            }
+
+            // 🔹 Dropdown data
+            ViewBag.Projects = _db.Projects.ToList();
+            ViewBag.Boards = projectId.HasValue
+                ? _db.Boards.Where(b => b.ProjectId == projectId.Value).ToList()
+                : new List<Board>();
+            ViewBag.Statuses = _db.StatusConfigs.ToList();
+
+            // Dynamic value dropdowns from WorkItems (distinct non-null)
+            ViewBag.ItemValues = _db.WorkItems.Where(w => w.Item != null).Select(w => w.Item!).Distinct().OrderBy(x => x).ToList();
+            ViewBag.DevValues = _db.WorkItems.Where(w => w.Dev != null && w.Dev != "").Select(w => w.Dev!).Distinct().OrderBy(x => x).ToList();
+            ViewBag.BAValues = _db.WorkItems.Where(w => w.BA != null && w.BA != "").Select(w => w.BA!).Distinct().OrderBy(x => x).ToList();
+            ViewBag.TypeValues = _db.WorkItems.Where(w => w.Type != null && w.Type != "").Select(w => w.Type!).Distinct().OrderBy(x => x).ToList();
+            var dateList = _db.WorkItems.Where(w => w.DemoDate.HasValue)
+                .Select(w => w.DemoDate!.Value.Date)
+                .Distinct()
+                .OrderBy(d => d)
+                .ToList();
+            ViewBag.DemoDateValues = dateList.Select(d => d.ToString("yyyy-MM-dd")).ToList();
+
+            // 🔹 Preserve selections for multi-selects
+            ViewBag.SelectedStatuses = statuses ?? new List<string>();
+            ViewBag.SelectedItems = items ?? new List<string>();
+            ViewBag.SelectedDevs = devs ?? new List<string>();
+            ViewBag.SelectedBAs = bas ?? new List<string>();
+            ViewBag.SelectedTypes = types ?? new List<string>();
+            ViewBag.SelectedDemoDates = demoDates ?? new List<string>();
+
+            ViewData["SelectedProjectId"] = projectId;
+            ViewData["SelectedBoardId"] = boardId;
+
+            return View(query.ToList());
+        }
+
+        // ================= CREATE =================
+        public IActionResult Create()
+        {
+            ViewBag.Projects = _db.Projects.ToList();
+            ViewBag.Boards = new List<Board>();
+            ViewBag.Statuses = _db.StatusConfigs.ToList();
+            return View(new WorkItem());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create([Bind(Prefix = "")] WorkItem item)
+        {
+            ViewBag.Projects = _db.Projects.ToList();
+            ViewBag.Statuses = _db.StatusConfigs.ToList();
+            ViewBag.Boards = item.ProjectId.HasValue
+                ? _db.Boards.Where(b => b.ProjectId  == item.ProjectId.Value).ToList()
+                : new List<Board>();
+
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Where(kvp => kvp.Value!.Errors.Count > 0)
+                    .Select(kvp => new { Field = kvp.Key, Messages = kvp.Value!.Errors.Select(e => e.ErrorMessage).ToList() })
+                    .ToList();
+                ViewData["ValidationErrors"] = errors;
+                return View(item);
+            }
+
+            if (!item.ProjectId.HasValue || !_db.Projects.Any(p => p.Id == item.ProjectId.Value))
+            {
+                ModelState.AddModelError(nameof(item.ProjectId), "Invalid Project selected");
+                return View(item);
+            }
+
+            if (!item.BoardId.HasValue || !_db.Boards.Any(b => b.Id == item.BoardId.Value))
+            {
+                ModelState.AddModelError(nameof(item.BoardId), "Invalid Board selected");
+                return View(item);
+            }
+
+            try
+            {
+                _db.WorkItems.Add(item);
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, $"Failed to save: {ex.Message}");
+                return View(item);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        // ================= EDIT =================
+        public IActionResult Edit(int id)
+        {
+            var item = _db.WorkItems
+                .Include(w => w.Board)
+                .ThenInclude(b => b.Project)
+                .FirstOrDefault(w => w.Id == id);
+
+            if (item == null)
+                return NotFound();
+
+            ViewBag.Projects = _db.Projects.ToList();
+            ViewBag.Boards = _db.Boards
+                .Where(b => b.ProjectId == item.ProjectId)
+                .ToList();
+            ViewBag.Statuses = _db.StatusConfigs.ToList();
+
+            return View(item);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit([Bind(Prefix = "")] WorkItem model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Projects = _db.Projects.ToList();
+                ViewBag.Boards = _db.Boards
+                    .Where(b => b.ProjectId == model.ProjectId)
+                    .ToList();
+                ViewBag.Statuses = _db.StatusConfigs.ToList();
+
+                return View(model);
+            }
+
+            // 🔑 LOAD TRACKED ENTITY
+            var item = _db.WorkItems.FirstOrDefault(w => w.Id == model.Id);
+            if (item == null)
+                return NotFound();
+
+            // 🔁 COPY VALUES (LIKE STATUS, BUT SAFE)
+            item.Item = model.Item;
+            item.Description = model.Description;
+            item.Status = model.Status;
+            item.Priority = model.Priority;
+
+            item.DevLead = model.DevLead;
+            item.Dev = model.Dev;
+            item.BALead = model.BALead;
+            item.BA = model.BA;
+            item.Comments = model.Comments;
+
+            item.DemoDate = model.DemoDate;
+            item.DesignETA = model.DesignETA;
+            item.ETA = model.ETA;
+            item.DevETA = model.DevETA;
+            item.Type = model.Type;
+
+            item.ProjectId = model.ProjectId;
+            item.BoardId = model.BoardId;
+
+            _db.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
+
+        // ================= DELETE =================
+        public IActionResult Delete(int id)
+        {
+            var item = _db.WorkItems.Include(w => w.Board).Include(w => w.Project).FirstOrDefault(w => w.Id == id);
+            if (item == null) return NotFound();
+            return View(item);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var item = _db.WorkItems.Find(id);
+            if (item == null) return NotFound();
+            _db.WorkItems.Remove(item);
+            _db.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
+        // ================= AJAX: GET BOARDS BY PROJECT =================
+        [HttpGet]
+        public IActionResult GetBoardsByProject(int projectId)
+        {
+            var boards = _db.Boards.Where(b => b.ProjectId == projectId)
+                .Select(b => new { b.Id, b.Name }).ToList();
+            return Json(boards);
+        }
+    }
+}

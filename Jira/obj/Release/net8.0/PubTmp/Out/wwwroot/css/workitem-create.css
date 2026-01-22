@@ -119,6 +119,15 @@
             text-decoration: underline;
         }
 
+.alert-danger {
+    background-color: #f8d7da;
+    color: #842029;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #f5c2c7;
+}
+
 /* =========================
    Responsive
    ========================= */

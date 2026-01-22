@@ -8,7 +8,7 @@ wwwroot\css\status-delete.css
 wwwroot\css\status-list.css
 wwwroot\css\workitem-create.css
 wwwroot\css\workitem-delete.css
-wwwroot\css\workitems.css
+wwwroot\css\import-page.css
 wwwroot\favicon.ico
 wwwroot\images\clean.png
 wwwroot\images\delete.png
@@ -71,3 +71,5 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
+wwwroot\css\workitems.css
+wwwroot\images\search.png

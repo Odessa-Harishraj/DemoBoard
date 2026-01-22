@@ -1,0 +1,424 @@
+﻿@using JiraClone.Data
+@model List<WorkItem>
+
+@{
+    Layout = "_Layout";
+
+    var projects = ViewBag.Projects as List<Project> ?? new();
+    var boards = ViewBag.Boards as List<Board> ?? new();
+    var statuses = ViewBag.Statuses as List<StatusConfig> ?? new();
+    var itemValues = ViewBag.ItemValues as List<string> ?? new();
+    var devValues = ViewBag.DevValues as List<string> ?? new();
+    var baValues = ViewBag.BAValues as List<string> ?? new();
+    var typeValues = ViewBag.TypeValues as List<string> ?? new();
+    var demoDateValues = ViewBag.DemoDateValues as List<string> ?? new();
+
+    int? selectedProjectId = ViewData["SelectedProjectId"] as int?;
+    int? selectedBoardId = ViewData["SelectedBoardId"] as int?;
+
+    // Multi-select selected values
+    var selectedStatuses = ViewBag.SelectedStatuses as List<string> ?? new();
+    var selectedItems = ViewBag.SelectedItems as List<string> ?? new();
+    var selectedDevs = ViewBag.SelectedDevs as List<string> ?? new();
+    var selectedBAs = ViewBag.SelectedBAs as List<string> ?? new();
+    var selectedTypes = ViewBag.SelectedTypes as List<string> ?? new();
+    var selectedDemoDates = ViewBag.SelectedDemoDates as List<string> ?? new();
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/workitems.css" />
+}
+<div class="status-list-page">
+        <h2>Work Items</h2>
+
+        <a asp-action="Create" class="create-workitem">Create Work Item</a>
+
+        <!-- Search Filter -->
+        <form id="workitemsFilterForm" method="get">
+            <div class="workitems-filter">
+
+                <div class="filter-group">
+                    <label>Project</label>
+                    <select name="projectId" id="projectSelect" class="form-control">
+                        <option value="">All Projects</option>
+                        @foreach (var p in projects)
+                        {
+                            <option value="@p.Id"
+                                    selected="@(selectedProjectId == p.Id)">
+                                @p.Name
+                            </option>
+                        }
+                    </select>
+                </div>
+
+
+                <div class="filter-group">
+                    <label>Board</label>
+                    <select name="boardId" id="boardSelect" class="form-control">
+                        <option value="">All Boards</option>
+                        @foreach (var b in boards)
+                        {
+                            <option value="@b.Id"
+                                    selected="@(selectedBoardId == b.Id)">
+                                @b.Name
+                            </option>
+                        }
+                    </select>
+                </div>
+
+
+                <div class="filter-group">
+                    <label>Status</label>
+                    <div class="excel-filter" data-filter-name="statuses">
+                        <button type="button" class="excel-filter-trigger" aria-haspopup="true" aria-expanded="false">
+                            <span>Filter by Status</span>
+                            <span class="caret"></span>
+                        </button>
+                        <div class="excel-filter-panel" hidden>
+                            <div class="excel-filter-search">
+                                <input type="text" placeholder="Search..." />
+                            </div>
+                            <div id="statusesCheckboxes" class="excel-filter-options">
+                                @foreach (var s in statuses)
+                                {
+                                    <label>
+                                        <input type="checkbox" name="statuses" value="@s.Name" @(selectedStatuses.Contains(s.Name) ? "checked" : "") />
+                                        <span>@s.Name</span>
+                                    </label>
+                                }
+                            </div>
+                            <div class="excel-filter-actions">
+                                <button type="button" class="btn btn-secondary" data-clear>Clear</button>
+                                <button type="button" class="btn btn-primary" data-apply>Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="filter-group">
+                    <label>Item</label>
+                    <div class="excel-filter" data-filter-name="items">
+                        <button type="button" class="excel-filter-trigger" aria-haspopup="true" aria-expanded="false">
+                            <span>Filter by Item</span>
+                            <span class="caret"></span>
+                        </button>
+                        <div class="excel-filter-panel" hidden>
+                            <div class="excel-filter-search">
+                                <input type="text" placeholder="Search..." />
+                            </div>
+                            <div id="itemsCheckboxes" class="excel-filter-options">
+                                @foreach (var v in itemValues)
+                                {
+                                    <label>
+                                        <input type="checkbox" name="items" value="@v" @(selectedItems.Contains(v) ? "checked" : "") />
+                                        <span>@v</span>
+                                    </label>
+                                }
+                            </div>
+                            <div class="excel-filter-actions">
+                                <button type="button" class="btn btn-secondary" data-clear>Clear</button>
+                                <button type="button" class="btn btn-primary" data-apply>Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="filter-group">
+                    <label>Dev</label>
+                    <div class="excel-filter" data-filter-name="devs">
+                        <button type="button" class="excel-filter-trigger" aria-haspopup="true" aria-expanded="false">
+                            <span>Filter by Dev</span>
+                            <span class="caret"></span>
+                        </button>
+                        <div class="excel-filter-panel" hidden>
+                            <div class="excel-filter-search">
+                                <input type="text" placeholder="Search..." />
+                            </div>
+                            <div id="devsCheckboxes" class="excel-filter-options">
+                                @foreach (var v in devValues)
+                                {
+                                    <label>
+                                        <input type="checkbox" name="devs" value="@v" @(selectedDevs.Contains(v) ? "checked" : "") />
+                                        <span>@v</span>
+                                    </label>
+                                }
+                            </div>
+                            <div class="excel-filter-actions">
+                                <button type="button" class="btn btn-secondary" data-clear>Clear</button>
+                                <button type="button" class="btn btn-primary" data-apply>Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="filter-group">
+                    <label>BA</label>
+                    <div class="excel-filter" data-filter-name="bas">
+                        <button type="button" class="excel-filter-trigger" aria-haspopup="true" aria-expanded="false">
+                            <span>Filter by BA</span>
+                            <span class="caret"></span>
+                        </button>
+                        <div class="excel-filter-panel" hidden>
+                            <div class="excel-filter-search">
+                                <input type="text" placeholder="Search..." />
+                            </div>
+                            <div id="basCheckboxes" class="excel-filter-options">
+                                @foreach (var v in baValues)
+                                {
+                                    <label>
+                                        <input type="checkbox" name="bas" value="@v" @(selectedBAs.Contains(v) ? "checked" : "") />
+                                        <span>@v</span>
+                                    </label>
+                                }
+                            </div>
+                            <div class="excel-filter-actions">
+                                <button type="button" class="btn btn-secondary" data-clear>Clear</button>
+                                <button type="button" class="btn btn-primary" data-apply>Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label>Type</label>
+                    <div class="excel-filter" data-filter-name="types">
+                        <button type="button" class="excel-filter-trigger" aria-haspopup="true" aria-expanded="false">
+                            <span>Filter by Type</span>
+                            <span class="caret"></span>
+                        </button>
+                        <div class="excel-filter-panel" hidden>
+                            <div class="excel-filter-search">
+                                <input type="text" placeholder="Search..." />
+                            </div>
+                            <div id="typesCheckboxes" class="excel-filter-options">
+                                @foreach (var v in typeValues)
+                                {
+                                    <label>
+                                        <input type="checkbox" name="types" value="@v" @(selectedTypes.Contains(v) ? "checked" : "") />
+                                        <span>@v</span>
+                                    </label>
+                                }
+                            </div>
+                            <div class="excel-filter-actions">
+                                <button type="button" class="btn btn-secondary" data-clear>Clear</button>
+                                <button type="button" class="btn btn-primary" data-apply>Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label>Demo Date</label>
+                    <div class="excel-filter" data-filter-name="demoDates">
+                        <button type="button" class="excel-filter-trigger" aria-haspopup="true" aria-expanded="false">
+                            <span>Filter by Demo Date</span>
+                            <span class="caret"></span>
+                        </button>
+                        <div class="excel-filter-panel" hidden>
+                            <div class="excel-filter-search">
+                                <input type="text" placeholder="Search..." />
+                            </div>
+                            <div id="demoDatesCheckboxes" class="excel-filter-options">
+                                @foreach (var v in demoDateValues)
+                                {
+                                    <label>
+                                        <input type="checkbox" name="demoDates" value="@v" @(selectedDemoDates.Contains(v) ? "checked" : "") />
+                                        <span>@v</span>
+                                    </label>
+                                }
+                            </div>
+                            <div class="excel-filter-actions">
+                                <button type="button" class="btn btn-secondary" data-clear>Clear</button>
+                                <button type="button" class="btn btn-primary" data-apply>Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-buttons"> 
+                    <button type="submit" class="btn btn-primary">
+                        <img src="~/images/search.png" alt="Search" style="width:20px;height:20px;" />
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <img src="~/images/clean.png" alt="Clear" style="width:20px;height:20px;" />
+                    </a> 
+                </div>
+            </div>
+        </form>
+
+        <!-- WorkItem Grid -->
+        <table class="excel-table">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Project</th>
+                    <th>Board</th>
+                    <th>Item</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Design ETA</th>
+                    <th>ETA</th>
+                    <th>Dev ETA</th>
+                    <th>Dev Lead</th>
+                    <th>Dev</th>
+                    <th>BA Lead</th>
+                    <th>BA</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Any())
+                {
+                    int i = 1;
+                    foreach (var w in Model)
+                    {
+                        <tr>
+                            <td>@i</td>
+                            <td>@w.Project?.Name </td>
+                            <td>@w.Board?.Name</td>
+                            <td>@w.Item</td>
+                            <td>@w.Description</td>
+                            <td>@w.Type</td>
+                            <td>@w.DesignETA?.ToString("MM-dd-yyy")</td>
+                            <td>@w.ETA?.ToString("MM-dd-yyy")</td>
+                            <td>@w.DevETA?.ToString("MM-dd-yyy")</td>
+                            <td>@w.DevLead</td>
+                            <td>@w.Dev</td>
+                            <td>@w.BALead</td>
+                            <td>@w.BA</td>
+                            <td>@w.Status</td>
+                            <td>
+                            <a asp-action="Edit"
+                               asp-route-id="@w.Id"
+                               class="action-link action-link-edit"
+                               title="Edit" alt="Edit">
+                                <img src="~/images/edit.png" alt="Edit" />
+                            </a>
+
+                            <a asp-action="Delete"
+                               asp-route-id="@w.Id"
+                               class="action-link action-link-delete"
+                               title="Delete" alt="Delete">
+                                <img src="~/images/delete.png" alt="Delete" />
+                            </a>
+                            </td>
+                        </tr>
+                        i++;
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="14" class="text-center">No WorkItems found.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+</div>
+
+@section Scripts {
+    <script>
+        const filterForm = document.getElementById('workitemsFilterForm');
+        const projectSelect = document.getElementById('projectSelect');
+        const boardSelect = document.getElementById('boardSelect');
+        const selectedBoardId = '@selectedBoardId';
+
+        let submitTimer = null;
+        let isUpdatingBoards = false;
+        function scheduleSubmit() {
+            if (isUpdatingBoards) return; // don't submit while boards are updating
+            if (submitTimer) clearTimeout(submitTimer);
+            submitTimer = setTimeout(() => {
+                filterForm.requestSubmit();
+                submitTimer = null;
+            }, 200);
+        }
+
+        function loadBoards(projectId, submitAfter = true) {
+            isUpdatingBoards = true;
+            boardSelect.innerHTML = '<option value="">All Boards</option>';
+
+            if (!projectId) {
+                isUpdatingBoards = false;
+                if (submitAfter) scheduleSubmit();
+                return;
+            }
+
+            fetch(`/WorkItems/GetBoardsByProject?projectId=${projectId}`)
+                .then(res => res.json())
+                .then(data => {
+                    data.forEach(b => {
+                        const opt = document.createElement('option');
+                        opt.value = b.id;
+                        opt.text = b.name;
+                        if (b.id == selectedBoardId) {
+                            opt.selected = true;
+                        }
+                        boardSelect.add(opt);
+                    });
+                })
+                .finally(() => {
+                    isUpdatingBoards = false;
+                    if (submitAfter) scheduleSubmit();
+                });
+        }
+
+        // Initial load: populate boards only (no submit)
+        if (projectSelect.value) {
+            loadBoards(projectSelect.value, false);
+        }
+
+        // Change project → reload boards and submit once
+        projectSelect.addEventListener('change', function () {
+            loadBoards(this.value, true);
+        });
+
+        // Excel-style filters: toggle, search, clear, apply
+        document.querySelectorAll('.excel-filter').forEach(filter => {
+            const trigger = filter.querySelector('.excel-filter-trigger');
+            const panel = filter.querySelector('.excel-filter-panel');
+            const search = filter.querySelector('.excel-filter-search input');
+            const options = filter.querySelector('.excel-filter-options');
+            const clearBtn = filter.querySelector('[data-clear]');
+            const applyBtn = filter.querySelector('[data-apply]');
+
+            function openPanel() {
+                panel.hidden = false;
+                trigger.setAttribute('aria-expanded', 'true');
+            }
+            function closePanel() {
+                panel.hidden = true;
+                trigger.setAttribute('aria-expanded', 'false');
+            }
+
+            trigger?.addEventListener('click', (e) => {
+                e.stopPropagation();
+                document.querySelectorAll('.excel-filter-panel').forEach(p => { if (p !== panel) p.hidden = true; });
+                if (panel.hidden) openPanel(); else closePanel();
+            });
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.excel-filter')) closePanel();
+            });
+
+            search?.addEventListener('input', () => {
+                const term = search.value.toLowerCase();
+                options.querySelectorAll('label').forEach(l => {
+                    const text = l.querySelector('span').textContent.toLowerCase();
+                    l.style.display = text.includes(term) ? '' : 'none';
+                });
+            });
+
+            clearBtn?.addEventListener('click', () => {
+                options.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            });
+            applyBtn?.addEventListener('click', () => {
+                filterForm.requestSubmit();
+                closePanel();
+            });
+        });
+    </script>
+}

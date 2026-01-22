@@ -123,6 +123,15 @@ namespace Jira.Migrations
                     b.Property<DateTime?>("ETA")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTimeOffset?>("EditLockExpiresAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("EditLockedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EditLockedIp")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Item")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

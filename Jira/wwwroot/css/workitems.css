@@ -6,6 +6,7 @@ Status List Page Styles
     padding: 20px;
     background-color: #f8f9fa;
     font-family: Arial, sans-serif;
+    /* Removed global horizontal scroll; table wrapper handles scrolling */
 }
 
 .status-list-page h2 {
@@ -96,6 +97,8 @@ Status List Page Styles
     border-collapse: collapse;
     background-color: #ffffff;
     font-size: 14px;
+    table-layout: auto; /* allow columns to size based on content */
+    min-width: 1000px; /* Ensure table doesn't shrink too much */
 }
 
     .excel-table th {
@@ -104,11 +107,16 @@ Status List Page Styles
         border: 1px solid #ced4da;
         padding: 10px;
         text-align: left;
+        position: sticky;
+        top: 0;
+        background: #f7f7f7;
+        z-index: 1;
     }
 
     .excel-table td {
         border: 1px solid #dee2e6;
-        padding: 10px;
+        padding: 8px 10px;
+        vertical-align: top;
     }
 
     .excel-table tr:nth-child(even) {
@@ -150,8 +158,51 @@ Status List Page Styles
         filter: brightness(0.8);
     }
 
+    /* Make Description column wider and allow wrapping */
+    .excel-table th:nth-child(5),
+    .excel-table td:nth-child(5) {
+        min-width: 360px; /* wider area for long descriptions */
+        width: 40%;
+        white-space: normal; /* permit wrapping */
+        word-break: break-word; /* break long words/URLs */
+    }
 
+    /* Prevent key columns from shrinking too much */
+    .excel-table th:nth-child(1),
+    .excel-table td:nth-child(1) { min-width: 60px; }
+    .excel-table th:nth-child(2),
+    .excel-table td:nth-child(2) { min-width: 160px; }
+    .excel-table th:nth-child(3),
+    .excel-table td:nth-child(3) { min-width: 140px; }
+    .excel-table th:nth-child(4),
+    .excel-table td:nth-child(4) { min-width: 140px; }
+    .excel-table th:nth-child(6),
+    .excel-table td:nth-child(6) { min-width: 120px; }
+    .excel-table th:nth-child(7),
+    .excel-table td:nth-child(7),
+    .excel-table th:nth-child(8),
+    .excel-table td:nth-child(8),
+    .excel-table th:nth-child(9),
+    .excel-table td:nth-child(9) { min-width: 120px; }
+    .excel-table th:nth-child(10),
+    .excel-table td:nth-child(10),
+    .excel-table th:nth-child(11),
+    .excel-table td:nth-child(11),
+    .excel-table th:nth-child(12),
+    .excel-table td:nth-child(12),
+    .excel-table th:nth-child(13),
+    .excel-table td:nth-child(13) { min-width: 140px; }
+    .excel-table th:nth-child(14),
+    .excel-table td:nth-child(14) { min-width: 120px; }
+    .excel-table th:nth-child(15),
+    .excel-table td:nth-child(15) { min-width: 120px; }
 
+    /* Improve readability of long description cells */
+    .excel-table td:nth-child(5) p,
+    .excel-table td:nth-child(5) span,
+    .excel-table td:nth-child(5) {
+        line-height: 1.4;
+    }
 
 .create-workitem {
     display: inline-block;
@@ -187,4 +238,21 @@ Status List Page Styles
         font-size: 12px;
         padding: 6px;
     }
+}
+
+/* Excel-like filter base styles */
+.excel-filter { position: relative; display: inline-block; }
+.excel-filter-trigger { display: flex; align-items: center; gap: 6px; padding: 6px 10px; border: 1px solid #ccc; border-radius: 4px; background: #fff; cursor: pointer; }
+.excel-filter-trigger .caret { width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 6px solid #666; }
+.excel-filter-panel { position: absolute; top: calc(100% + 4px); left: 0; width: 280px; max-height: 280px; overflow: auto; border: 1px solid #ccc; border-radius: 4px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 50; }
+.excel-filter-search { padding: 8px; border-bottom: 1px solid #eee; background: #f7f7f7; position: sticky; top: 0; }
+.excel-filter-options { padding: 8px; }
+.excel-filter-options label { display: flex; align-items: center; gap: 6px; padding: 4px 0; }
+.excel-filter-actions { padding: 8px; border-top: 1px solid #eee; background: #f7f7f7; position: sticky; bottom: 0; display: flex; gap: 8px; }
+
+/* Bottom scroll container for Excel-like horizontal scrolling */
+.table-scroll-bottom {
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
 }

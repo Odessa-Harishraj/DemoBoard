@@ -7,6 +7,11 @@ D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\Jira.runtimeconfig.json
 D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\Jira.pdb
 D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\Azure.Core.dll
 D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\Azure.Identity.dll
+D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\ClosedXML.dll
+D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\ClosedXML.Parser.dll
+D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\DocumentFormat.OpenXml.dll
+D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\DocumentFormat.OpenXml.Framework.dll
+D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\ExcelNumberFormat.dll
 D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\Microsoft.Bcl.AsyncInterfaces.dll
 D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\Microsoft.Data.SqlClient.dll
 D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\Microsoft.EntityFrameworkCore.dll
@@ -23,9 +28,12 @@ D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\Microsoft.IdentityModel.Prot
 D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\Microsoft.IdentityModel.Tokens.dll
 D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\Microsoft.SqlServer.Server.dll
 D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\Microsoft.Win32.SystemEvents.dll
+D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\RBush.dll
+D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\SixLabors.Fonts.dll
 D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\System.Configuration.ConfigurationManager.dll
 D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\System.Drawing.Common.dll
 D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\System.IdentityModel.Tokens.Jwt.dll
+D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\System.IO.Packaging.dll
 D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\System.Memory.Data.dll
 D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\System.Runtime.Caching.dll
 D:\JiraBoard_SQL\Jira\obj\Release\net8.0\PubTmp\Out\System.Security.Cryptography.ProtectedData.dll

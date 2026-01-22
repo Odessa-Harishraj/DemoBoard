@@ -1,0 +1,258 @@
+﻿/* =========================
+Status List Page Styles
+========================= */
+
+.status-list-page {
+    padding: 20px;
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+    /* Removed global horizontal scroll; table wrapper handles scrolling */
+}
+
+.status-list-page h2 {
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* =========================
+   Filter Bar Styles
+   ========================= */
+.workitems-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #dee2e6;
+}
+
+    .workitems-filter .filter-group {
+        display: flex;
+        flex-direction: column;
+        min-width: 150px;
+    }
+
+    .workitems-filter label {
+        margin-bottom: 5px;
+        font-weight: 500;
+        font-size: 14px;
+        color: #495057;
+    }
+
+    .workitems-filter .form-control {
+        padding: 6px 10px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        font-size: 14px;
+        background-color: #ffffff;
+        color: #495057;
+    }
+
+    /* Buttons */
+    .workitems-filter .filter-buttons {
+        display: flex;
+        align-items: flex-end;
+        gap: 10px;
+    }
+
+    .workitems-filter .btn {
+        padding: 6px 12px;
+        font-size: 14px;
+        border-radius: 4px;
+        text-decoration: none;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .workitems-filter .btn-primary {
+        background-color: #0d6efd;
+        color: #ffffff;
+        border-color: #0d6efd;
+    }
+
+        .workitems-filter .btn-primary:hover {
+            background-color: #0b5ed7;
+            border-color: #0a58ca;
+        }
+
+    .workitems-filter .btn-secondary {
+        background-color: #c4ced6;
+        color: #ffffff;
+        border-color: #c4ced6;
+    }
+
+        .workitems-filter .btn-secondary:hover {
+            background-color: #5c636a;
+            border-color: #565e64;
+        }
+
+/* =========================
+   Table Styles
+   ========================= */
+.excel-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    font-size: 14px;
+    table-layout: auto; /* allow columns to size based on content */
+    min-width: 1000px; /* Ensure table doesn't shrink too much */
+}
+
+    .excel-table th {
+        background-color: #e9ecef;
+        font-weight: 600;
+        border: 1px solid #ced4da;
+        padding: 10px;
+        text-align: left;
+        position: sticky;
+        top: 0;
+        background: #f7f7f7;
+        z-index: 1;
+    }
+
+    .excel-table td {
+        border: 1px solid #dee2e6;
+        padding: 8px 10px;
+        vertical-align: top;
+    }
+
+    .excel-table tr:nth-child(even) {
+        background-color: #fafafa;
+    }
+
+    .excel-table tr:hover {
+        background-color: #eef5ff;
+    }
+
+    /* Base action link */
+    .excel-table .action-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 20px;
+        width: 20px;
+        text-decoration: none;
+        margin-right: 10px; /* add gap between icons */
+    }
+
+    /* remove margin on the last icon in the cell */
+    .excel-table td .action-link:last-child {
+        margin-right: 0;
+    }
+
+        /* Icon size follows parent */
+        .excel-table .action-link img {
+            width: 100%;
+            height: 100%;
+        }
+
+    /* Hover effects */
+    .excel-table .action-link-edit:hover img {
+        filter: brightness(0.9);
+    }
+
+    .excel-table .action-link-delete:hover img {
+        filter: brightness(0.8);
+    }
+
+    /* Make Description column wider and allow wrapping */
+    .excel-table th:nth-child(5),
+    .excel-table td:nth-child(5) {
+        min-width: 360px; /* wider area for long descriptions */
+        width: 40%;
+        white-space: normal; /* permit wrapping */
+        word-break: break-word; /* break long words/URLs */
+    }
+
+    /* Prevent key columns from shrinking too much */
+    .excel-table th:nth-child(1),
+    .excel-table td:nth-child(1) { min-width: 60px; }
+    .excel-table th:nth-child(2),
+    .excel-table td:nth-child(2) { min-width: 160px; }
+    .excel-table th:nth-child(3),
+    .excel-table td:nth-child(3) { min-width: 140px; }
+    .excel-table th:nth-child(4),
+    .excel-table td:nth-child(4) { min-width: 140px; }
+    .excel-table th:nth-child(6),
+    .excel-table td:nth-child(6) { min-width: 120px; }
+    .excel-table th:nth-child(7),
+    .excel-table td:nth-child(7),
+    .excel-table th:nth-child(8),
+    .excel-table td:nth-child(8),
+    .excel-table th:nth-child(9),
+    .excel-table td:nth-child(9) { min-width: 120px; }
+    .excel-table th:nth-child(10),
+    .excel-table td:nth-child(10),
+    .excel-table th:nth-child(11),
+    .excel-table td:nth-child(11),
+    .excel-table th:nth-child(12),
+    .excel-table td:nth-child(12),
+    .excel-table th:nth-child(13),
+    .excel-table td:nth-child(13) { min-width: 140px; }
+    .excel-table th:nth-child(14),
+    .excel-table td:nth-child(14) { min-width: 120px; }
+    .excel-table th:nth-child(15),
+    .excel-table td:nth-child(15) { min-width: 120px; }
+
+    /* Improve readability of long description cells */
+    .excel-table td:nth-child(5) p,
+    .excel-table td:nth-child(5) span,
+    .excel-table td:nth-child(5) {
+        line-height: 1.4;
+    }
+
+.create-workitem {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 8px 14px;
+    background-color: #0d6efd;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+    .create-workitem:hover {
+        background-color: #0b5ed7;
+    }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .workitems-filter {
+        flex-direction: column;
+    }
+
+        .workitems-filter .filter-buttons {
+            flex-direction: row;
+            width: 100%;
+        }
+
+            .workitems-filter .filter-buttons .btn {
+                flex: 1;
+            }
+
+    .excel-table th, .excel-table td {
+        font-size: 12px;
+        padding: 6px;
+    }
+}
+
+/* Excel-like filter base styles */
+.excel-filter { position: relative; display: inline-block; }
+.excel-filter-trigger { display: flex; align-items: center; gap: 6px; padding: 6px 10px; border: 1px solid #ccc; border-radius: 4px; background: #fff; cursor: pointer; }
+.excel-filter-trigger .caret { width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 6px solid #666; }
+.excel-filter-panel { position: absolute; top: calc(100% + 4px); left: 0; width: 280px; max-height: 280px; overflow: auto; border: 1px solid #ccc; border-radius: 4px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 50; }
+.excel-filter-search { padding: 8px; border-bottom: 1px solid #eee; background: #f7f7f7; position: sticky; top: 0; }
+.excel-filter-options { padding: 8px; }
+.excel-filter-options label { display: flex; align-items: center; gap: 6px; padding: 4px 0; }
+.excel-filter-actions { padding: 8px; border-top: 1px solid #eee; background: #f7f7f7; position: sticky; bottom: 0; display: flex; gap: 8px; }
+
+/* Bottom scroll container for Excel-like horizontal scrolling */
+.table-scroll-bottom {
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+}
